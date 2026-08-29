@@ -1,0 +1,3084 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Análisis Exploratorio Bivariado | Análisis Exploratorio de Datos — Diabetes</title>
+  <meta name="description" content="2 Análisis Exploratorio Bivariado | Análisis Exploratorio de Datos — Diabetes" />
+  <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Análisis Exploratorio Bivariado | Análisis Exploratorio de Datos — Diabetes" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Análisis Exploratorio Bivariado | Análisis Exploratorio de Datos — Diabetes" />
+  
+  
+  
+
+<meta name="author" content="Abrahan Basto y Angel mozo" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="análisis-univariado.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong>EDA Diabetes (R)</strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Presentación</a></li>
+<li class="chapter" data-level="1" data-path="análisis-univariado.html"><a href="análisis-univariado.html"><i class="fa fa-check"></i><b>1</b> Análisis Univariado</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variables-categóricas"><i class="fa fa-check"></i><b>1.1</b> Variables categóricas</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-respuesta-diabetes"><i class="fa fa-check"></i><b>1.1.1</b> Variable Respuesta: (<code>Diabetes</code>)</a></li>
+<li class="chapter" data-level="1.1.2" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-pa_alta-presión-arterial-alta"><i class="fa fa-check"></i><b>1.1.2</b> Variable <code>PA_alta</code> (Presión Arterial Alta)</a></li>
+<li class="chapter" data-level="1.1.3" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-col_alto-colesterol-alto"><i class="fa fa-check"></i><b>1.1.3</b> Variable <code>col_alto</code> (Colesterol Alto)</a></li>
+<li class="chapter" data-level="1.1.4" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-checkcol-chequeo-de-colesterol-en-últimos-5-años"><i class="fa fa-check"></i><b>1.1.4</b> Variable <code>CheckCol</code> (Chequeo de Colesterol en últimos 5 años)</a></li>
+<li class="chapter" data-level="1.1.5" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-fumador"><i class="fa fa-check"></i><b>1.1.5</b> Variable <code>Fumador</code></a></li>
+<li class="chapter" data-level="1.1.6" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-derrame-derrame-cerebral"><i class="fa fa-check"></i><b>1.1.6</b> Variable <code>derrame</code> (Derrame Cerebral)</a></li>
+<li class="chapter" data-level="1.1.7" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-enfcardi-enfermedad-cardiaca"><i class="fa fa-check"></i><b>1.1.7</b> Variable <code>EnfCardi</code> (Enfermedad Cardiaca)</a></li>
+<li class="chapter" data-level="1.1.8" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-actfisi-actividad-física-en-los-últimos-30-días"><i class="fa fa-check"></i><b>1.1.8</b> Variable <code>ActFisi</code> (Actividad Física en los últimos 30 días)</a></li>
+<li class="chapter" data-level="1.1.9" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-fruta-consumo-diario-de-fruta"><i class="fa fa-check"></i><b>1.1.9</b> Variable <code>fruta</code> (Consumo diario de fruta)</a></li>
+<li class="chapter" data-level="1.1.10" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-vegetales-consumo-diario-de-vegetales"><i class="fa fa-check"></i><b>1.1.10</b> Variable <code>vegetales</code> (Consumo diario de vegetales)</a></li>
+<li class="chapter" data-level="1.1.11" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-alcohlico"><i class="fa fa-check"></i><b>1.1.11</b> Variable <code>Alcohlico</code></a></li>
+<li class="chapter" data-level="1.1.12" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-eps-cobertura-médica-eps"><i class="fa fa-check"></i><b>1.1.12</b> Variable <code>eps</code> (Cobertura médica / EPS)</a></li>
+<li class="chapter" data-level="1.1.13" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-afordabilidadmedica"><i class="fa fa-check"></i><b>1.1.13</b> Variable <code>AfordabilidadMedica</code></a></li>
+<li class="chapter" data-level="1.1.14" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-saludg-salud-general-percibida"><i class="fa fa-check"></i><b>1.1.14</b> Variable <code>SaludG</code> (Salud general percibida)</a></li>
+<li class="chapter" data-level="1.1.15" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-dificultadcaminar"><i class="fa fa-check"></i><b>1.1.15</b> Variable <code>DificultadCaminar</code></a></li>
+<li class="chapter" data-level="1.1.16" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-genero"><i class="fa fa-check"></i><b>1.1.16</b> Variable <code>Genero</code></a></li>
+<li class="chapter" data-level="1.1.17" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-edad"><i class="fa fa-check"></i><b>1.1.17</b> Variable <code>Edad</code></a></li>
+<li class="chapter" data-level="1.1.18" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-educacion"><i class="fa fa-check"></i><b>1.1.18</b> Variable <code>Educacion</code></a></li>
+<li class="chapter" data-level="1.1.19" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-ingresos"><i class="fa fa-check"></i><b>1.1.19</b> Variable <code>Ingresos</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variables-numéricas"><i class="fa fa-check"></i><b>1.2</b> Variables Numéricas</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-imc-índice-de-masa-corporal"><i class="fa fa-check"></i><b>1.2.1</b> Variable <code>IMC</code> (Índice de Masa Corporal)</a></li>
+<li class="chapter" data-level="1.2.2" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-saludm-días-de-mala-salud-mental-en-los-últimos-30-días"><i class="fa fa-check"></i><b>1.2.2</b> Variable <code>SaludM</code> (días de mala salud mental en los últimos 30 días)</a></li>
+<li class="chapter" data-level="1.2.3" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-saludf-días-de-mala-salud-física-en-los-últimos-30-días"><i class="fa fa-check"></i><b>1.2.3</b> Variable <code>SaludF</code> (días de mala salud física en los últimos 30 días)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html"><i class="fa fa-check"></i><b>2</b> Análisis Exploratorio Bivariado</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-respuesta-frente-a-variables-numéricas"><i class="fa fa-check"></i><b>2.1</b> Variable respuesta frente a variables numéricas</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-imc-índice-de-masa-corporal-1"><i class="fa fa-check"></i><b>2.1.1</b> Variable <code>IMC</code> (Índice de Masa Corporal)</a></li>
+<li class="chapter" data-level="2.1.2" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-saludm-días-de-salud-mental-no-buena-en-los-últimos-30-días"><i class="fa fa-check"></i><b>2.1.2</b> Variable <code>SaludM</code> (días de salud mental no buena en los últimos 30 días)</a></li>
+<li class="chapter" data-level="2.1.3" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-saludf-días-de-salud-física-no-buena-en-los-últimos-30-días"><i class="fa fa-check"></i><b>2.1.3</b> Variable <code>SaludF</code> (días de salud física no buena en los últimos 30 días)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-respuesta-frente-a-variables-categóricas"><i class="fa fa-check"></i><b>2.2</b> Variable respuesta frente a variables categóricas</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-pa_alta-presión-arterial-alta-1"><i class="fa fa-check"></i><b>2.2.1</b> Variable <code>PA_alta</code> (presión arterial alta)</a></li>
+<li class="chapter" data-level="2.2.2" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-col_alto-colesterol-alto-1"><i class="fa fa-check"></i><b>2.2.2</b> Variable <code>col_alto</code> (colesterol alto)</a></li>
+<li class="chapter" data-level="2.2.3" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-checkcol-chequeo-de-colesterol-en-los-últimos-5-años"><i class="fa fa-check"></i><b>2.2.3</b> Variable <code>CheckCol</code> (chequeo de colesterol en los últimos 5 años)</a></li>
+<li class="chapter" data-level="2.2.4" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-fumador-haber-fumado-al-menos-100-cigarrillos-en-la-vida"><i class="fa fa-check"></i><b>2.2.4</b> Variable <code>Fumador</code> (haber fumado al menos 100 cigarrillos en la vida)</a></li>
+<li class="chapter" data-level="2.2.5" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-derrame-haber-tenido-un-derrame-cerebral"><i class="fa fa-check"></i><b>2.2.5</b> Variable <code>derrame</code> (haber tenido un derrame cerebral)</a></li>
+<li class="chapter" data-level="2.2.6" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-enfcardi-enfermedad-coronaria-o-infarto"><i class="fa fa-check"></i><b>2.2.6</b> Variable <code>EnfCardi</code> (enfermedad coronaria o infarto)</a></li>
+<li class="chapter" data-level="2.2.7" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-actfisi-actividad-física-en-los-últimos-30-días-1"><i class="fa fa-check"></i><b>2.2.7</b> Variable <code>ActFisi</code> (actividad física en los últimos 30 días)</a></li>
+<li class="chapter" data-level="2.2.8" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-fruta-consumo-de-fruta-al-menos-una-vez-al-día"><i class="fa fa-check"></i><b>2.2.8</b> Variable <code>fruta</code> (consumo de fruta al menos una vez al día)</a></li>
+<li class="chapter" data-level="2.2.9" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-vegetales-consumo-de-vegetales-al-menos-una-vez-al-día"><i class="fa fa-check"></i><b>2.2.9</b> Variable <code>vegetales</code> (consumo de vegetales al menos una vez al día)</a></li>
+<li class="chapter" data-level="2.2.10" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-alcohlico-consumo-excesivo-de-alcohol"><i class="fa fa-check"></i><b>2.2.10</b> Variable <code>Alcohlico</code> (consumo excesivo de alcohol)</a></li>
+<li class="chapter" data-level="2.2.11" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-eps-cobertura-de-salud-eps-o-seguro-médico"><i class="fa fa-check"></i><b>2.2.11</b> Variable <code>eps</code> (cobertura de salud (EPS o seguro médico))</a></li>
+<li class="chapter" data-level="2.2.12" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-afordabilidadmedica-no-poder-costear-una-consulta-médica-por-dinero-en-el-último-año"><i class="fa fa-check"></i><b>2.2.12</b> Variable <code>AfordabilidadMedica</code> (no poder costear una consulta médica por dinero en el último año)</a></li>
+<li class="chapter" data-level="2.2.13" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-saludg-salud-general-percibida-1"><i class="fa fa-check"></i><b>2.2.13</b> Variable <code>SaludG</code> (salud general percibida)</a></li>
+<li class="chapter" data-level="2.2.14" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-dificultadcaminar-dificultad-seria-para-caminar-o-subir-escaleras"><i class="fa fa-check"></i><b>2.2.14</b> Variable <code>DificultadCaminar</code> (dificultad seria para caminar o subir escaleras)</a></li>
+<li class="chapter" data-level="2.2.15" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-genero-género"><i class="fa fa-check"></i><b>2.2.15</b> Variable <code>Genero</code> (género)</a></li>
+<li class="chapter" data-level="2.2.16" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-edad-categoría-de-edad-rangos-de-5-años-de-18-a-80"><i class="fa fa-check"></i><b>2.2.16</b> Variable <code>Edad</code> (categoría de edad (rangos de 5 años, de 18 a 80+))</a></li>
+<li class="chapter" data-level="2.2.17" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-educacion-nivel-educativo-alcanzado"><i class="fa fa-check"></i><b>2.2.17</b> Variable <code>Educacion</code> (nivel educativo alcanzado)</a></li>
+<li class="chapter" data-level="2.2.18" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-ingresos-nivel-de-ingresos-anual-del-hogar"><i class="fa fa-check"></i><b>2.2.18</b> Variable <code>Ingresos</code> (nivel de ingresos anual del hogar)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#conclusión"><i class="fa fa-check"></i><b>2.3</b> Conclusión</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/" target="_blank">Publicado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análisis Exploratorio de Datos — Diabetes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="análisis-exploratorio-bivariado" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> Análisis Exploratorio Bivariado<a href="análisis-exploratorio-bivariado.html#análisis-exploratorio-bivariado" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>A continuación se realiza el análisis bivariado del conjunto de datos <code>diabetes_binary_5050split_health_indicators_BRFSS2015</code>, comparando cada variable frente a la variable respuesta <code>Diabetes</code>.</p>
+<div id="variable-respuesta-frente-a-variables-numéricas" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Variable respuesta frente a variables numéricas<a href="análisis-exploratorio-bivariado.html#variable-respuesta-frente-a-variables-numéricas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para cada variable numérica se compararán los dos grupos de la variable de respuesta (<code>Diabetes</code>) mediante un gráfico de caja y bigotes, una tabla resumen, una prueba de normalidad (Anderson-Darling), una prueba de igualdad de varianzas (Levene) y una prueba de Mann-Whitney.</p>
+<div id="variable-imc-índice-de-masa-corporal-1" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Variable <code>IMC</code> (Índice de Masa Corporal)<a href="análisis-exploratorio-bivariado.html#variable-imc-índice-de-masa-corporal-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Gráfico de caja y bigotes bivariado</strong></p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="análisis-exploratorio-bivariado.html#cb45-1" tabindex="-1"></a><span class="fu">bivar_boxplot</span>(df, target, <span class="st">&quot;IMC&quot;</span>, etiquetas_diabetes,</span>
+<span id="cb45-2"><a href="análisis-exploratorio-bivariado.html#cb45-2" tabindex="-1"></a>  <span class="at">color =</span> <span class="st">&quot;#4C72B0&quot;</span>, <span class="at">titulo =</span> <span class="st">&quot;Distribución de IMC según Diabetes&quot;</span>)</span></code></pre></div>
+<p><img src="diabetes-book-r_files/figure-html/unnamed-chunk-45-1.png" alt="" width="768" style="display: block; margin: auto;" /></p>
+<p>El gráfico muestra que los pacientes con diabetes o prediabetes presentan valores de <code>IMC</code> más altos y con mayor dispersión que los pacientes sin diabetes.</p>
+<p><strong>Comparación de ambas muestras</strong></p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="análisis-exploratorio-bivariado.html#cb46-1" tabindex="-1"></a><span class="fu">mostrar_tabla</span>(<span class="fu">bivar_resumen_numerico</span>(df, target, <span class="st">&quot;IMC&quot;</span>))</span></code></pre></div>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Diabetes
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+media
+</th>
+<th style="text-align:right;">
+ds
+</th>
+<th style="text-align:right;">
+mediana
+</th>
+<th style="text-align:right;">
+minimo
+</th>
+<th style="text-align:right;">
+maximo
+</th>
+<th style="text-align:right;">
+Q1
+</th>
+<th style="text-align:right;">
+Q3
+</th>
+<th style="text-align:right;">
+IQR
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:right;">
+33960
+</td>
+<td style="text-align:right;">
+27.88
+</td>
+<td style="text-align:right;">
+6.26
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+98
+</td>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+35097
+</td>
+<td style="text-align:right;">
+31.96
+</td>
+<td style="text-align:right;">
+7.38
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+98
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TOTAL
+</td>
+<td style="text-align:right;">
+69057
+</td>
+<td style="text-align:right;">
+29.96
+</td>
+<td style="text-align:right;">
+7.15
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+98
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+8
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Prueba de normalidad (Anderson-Darling)</strong></p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="análisis-exploratorio-bivariado.html#cb47-1" tabindex="-1"></a><span class="fu">prueba_anderson_darling</span>(df, target, <span class="st">&quot;IMC&quot;</span>, etiquetas_diabetes)</span></code></pre></div>
+<pre><code>## Anderson-Darling: Sin diabetes 
+## Estadístico: 640.0333
+## p-valor: 3.7000e-24
+## Resultado: Rechaza H0 (no normal) 
+## 
+## Anderson-Darling: Con diabetes / prediabetes 
+## Estadístico: 519.7446
+## p-valor: 3.7000e-24
+## Resultado: Rechaza H0 (no normal)</code></pre>
+<p>Con un nivel de confianza del 95%, la prueba de Anderson-Darling indica que ninguno de los dos grupos sigue una distribución normal.</p>
+<p><strong>Prueba de igualdad de varianzas (Levene)</strong></p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="análisis-exploratorio-bivariado.html#cb49-1" tabindex="-1"></a><span class="fu">prueba_levene</span>(df, target, <span class="st">&quot;IMC&quot;</span>)</span></code></pre></div>
+<pre><code>## Estadístico de Levene: 796.6615
+## p-valor: 2.8228e-174
+## Resultado: Rechaza H0 (varianzas distintas)</code></pre>
+<p>La prueba de Levene indica que las varianzas de ambos grupos son estadísticamente distintas.</p>
+<p><strong>Prueba de Mann-Whitney (Wilcoxon rank-sum)</strong></p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="análisis-exploratorio-bivariado.html#cb51-1" tabindex="-1"></a><span class="fu">prueba_mann_whitney</span>(df, target, <span class="st">&quot;IMC&quot;</span>)</span></code></pre></div>
+<pre><code>## Mann-Whitney U (Wilcoxon rank-sum)
+## Estadístico W: 815513028.5000
+## p-valor: 0.000000e+00
+## Resultado: Rechaza H0 (distribuciones distintas)</code></pre>
+<p>Dado que ninguno de los dos grupos sigue una distribución normal, se utiliza la prueba de Mann-Whitney en lugar de una prueba t. El resultado indica que se rechaza la hipótesis nula: los grupos difieren significativamente en <code>IMC</code>.</p>
+</div>
+<div id="variable-saludm-días-de-salud-mental-no-buena-en-los-últimos-30-días" class="section level3 hasAnchor" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Variable <code>SaludM</code> (días de salud mental no buena en los últimos 30 días)<a href="análisis-exploratorio-bivariado.html#variable-saludm-días-de-salud-mental-no-buena-en-los-últimos-30-días" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Gráfico de caja y bigotes bivariado</strong></p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="análisis-exploratorio-bivariado.html#cb53-1" tabindex="-1"></a><span class="fu">bivar_boxplot</span>(df, target, <span class="st">&quot;SaludM&quot;</span>, etiquetas_diabetes,</span>
+<span id="cb53-2"><a href="análisis-exploratorio-bivariado.html#cb53-2" tabindex="-1"></a>  <span class="at">color =</span> <span class="st">&quot;#4C72B0&quot;</span>, <span class="at">titulo =</span> <span class="st">&quot;Distribución de SaludM según Diabetes&quot;</span>)</span></code></pre></div>
+<p><img src="diabetes-book-r_files/figure-html/unnamed-chunk-50-1.png" alt="" width="768" style="display: block; margin: auto;" /></p>
+<p>El gráfico muestra que los pacientes con diabetes o prediabetes presentan valores de <code>SaludM</code> más altos que los pacientes sin diabetes.</p>
+<p><strong>Comparación de ambas muestras</strong></p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="análisis-exploratorio-bivariado.html#cb54-1" tabindex="-1"></a><span class="fu">mostrar_tabla</span>(<span class="fu">bivar_resumen_numerico</span>(df, target, <span class="st">&quot;SaludM&quot;</span>))</span></code></pre></div>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Diabetes
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+media
+</th>
+<th style="text-align:right;">
+ds
+</th>
+<th style="text-align:right;">
+mediana
+</th>
+<th style="text-align:right;">
+minimo
+</th>
+<th style="text-align:right;">
+maximo
+</th>
+<th style="text-align:right;">
+Q1
+</th>
+<th style="text-align:right;">
+Q3
+</th>
+<th style="text-align:right;">
+IQR
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:right;">
+33960
+</td>
+<td style="text-align:right;">
+3.16
+</td>
+<td style="text-align:right;">
+7.33
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+35097
+</td>
+<td style="text-align:right;">
+4.49
+</td>
+<td style="text-align:right;">
+8.97
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TOTAL
+</td>
+<td style="text-align:right;">
+69057
+</td>
+<td style="text-align:right;">
+3.84
+</td>
+<td style="text-align:right;">
+8.23
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Prueba de normalidad (Anderson-Darling)</strong></p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="análisis-exploratorio-bivariado.html#cb55-1" tabindex="-1"></a><span class="fu">prueba_anderson_darling</span>(df, target, <span class="st">&quot;SaludM&quot;</span>, etiquetas_diabetes)</span></code></pre></div>
+<pre><code>## Anderson-Darling: Sin diabetes 
+## Estadístico: 7261.1022
+## p-valor: 3.7000e-24
+## Resultado: Rechaza H0 (no normal) 
+## 
+## Anderson-Darling: Con diabetes / prediabetes 
+## Estadístico: 6930.6503
+## p-valor: 3.7000e-24
+## Resultado: Rechaza H0 (no normal)</code></pre>
+<p><strong>Prueba de igualdad de varianzas (Levene)</strong></p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="análisis-exploratorio-bivariado.html#cb57-1" tabindex="-1"></a><span class="fu">prueba_levene</span>(df, target, <span class="st">&quot;SaludM&quot;</span>)</span></code></pre></div>
+<pre><code>## Estadístico de Levene: 452.5269
+## p-valor: 4.2676e-100
+## Resultado: Rechaza H0 (varianzas distintas)</code></pre>
+<p><strong>Prueba de Mann-Whitney (Wilcoxon rank-sum)</strong></p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="análisis-exploratorio-bivariado.html#cb59-1" tabindex="-1"></a><span class="fu">prueba_mann_whitney</span>(df, target, <span class="st">&quot;SaludM&quot;</span>)</span></code></pre></div>
+<pre><code>## Mann-Whitney U (Wilcoxon rank-sum)
+## Estadístico W: 623076966.0000
+## p-valor: 1.791576e-35
+## Resultado: Rechaza H0 (distribuciones distintas)</code></pre>
+<p>Dado que ninguno de los dos grupos sigue una distribución normal, se utiliza la prueba de Mann-Whitney. El resultado indica que se rechaza la hipótesis nula.</p>
+</div>
+<div id="variable-saludf-días-de-salud-física-no-buena-en-los-últimos-30-días" class="section level3 hasAnchor" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> Variable <code>SaludF</code> (días de salud física no buena en los últimos 30 días)<a href="análisis-exploratorio-bivariado.html#variable-saludf-días-de-salud-física-no-buena-en-los-últimos-30-días" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Gráfico de caja y bigotes bivariado</strong></p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="análisis-exploratorio-bivariado.html#cb61-1" tabindex="-1"></a><span class="fu">bivar_boxplot</span>(df, target, <span class="st">&quot;SaludF&quot;</span>, etiquetas_diabetes,</span>
+<span id="cb61-2"><a href="análisis-exploratorio-bivariado.html#cb61-2" tabindex="-1"></a>  <span class="at">color =</span> <span class="st">&quot;#4C72B0&quot;</span>, <span class="at">titulo =</span> <span class="st">&quot;Distribución de SaludF según Diabetes&quot;</span>)</span></code></pre></div>
+<p><img src="diabetes-book-r_files/figure-html/unnamed-chunk-55-1.png" alt="" width="768" style="display: block; margin: auto;" /></p>
+<p>El gráfico muestra que los pacientes con diabetes o prediabetes presentan valores de <code>SaludF</code> más altos que los pacientes sin diabetes.</p>
+<p><strong>Comparación de ambas muestras</strong></p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="análisis-exploratorio-bivariado.html#cb62-1" tabindex="-1"></a><span class="fu">mostrar_tabla</span>(<span class="fu">bivar_resumen_numerico</span>(df, target, <span class="st">&quot;SaludF&quot;</span>))</span></code></pre></div>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Diabetes
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+media
+</th>
+<th style="text-align:right;">
+ds
+</th>
+<th style="text-align:right;">
+mediana
+</th>
+<th style="text-align:right;">
+minimo
+</th>
+<th style="text-align:right;">
+maximo
+</th>
+<th style="text-align:right;">
+Q1
+</th>
+<th style="text-align:right;">
+Q3
+</th>
+<th style="text-align:right;">
+IQR
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:right;">
+33960
+</td>
+<td style="text-align:right;">
+3.81
+</td>
+<td style="text-align:right;">
+8.23
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+35097
+</td>
+<td style="text-align:right;">
+8.01
+</td>
+<td style="text-align:right;">
+11.32
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+15
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TOTAL
+</td>
+<td style="text-align:right;">
+69057
+</td>
+<td style="text-align:right;">
+5.95
+</td>
+<td style="text-align:right;">
+10.14
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Prueba de normalidad (Anderson-Darling)</strong></p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="análisis-exploratorio-bivariado.html#cb63-1" tabindex="-1"></a><span class="fu">prueba_anderson_darling</span>(df, target, <span class="st">&quot;SaludF&quot;</span>, etiquetas_diabetes)</span></code></pre></div>
+<pre><code>## Anderson-Darling: Sin diabetes 
+## Estadístico: 7031.1427
+## p-valor: 3.7000e-24
+## Resultado: Rechaza H0 (no normal) 
+## 
+## Anderson-Darling: Con diabetes / prediabetes 
+## Estadístico: 4639.2176
+## p-valor: 3.7000e-24
+## Resultado: Rechaza H0 (no normal)</code></pre>
+<p><strong>Prueba de igualdad de varianzas (Levene)</strong></p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="análisis-exploratorio-bivariado.html#cb65-1" tabindex="-1"></a><span class="fu">prueba_levene</span>(df, target, <span class="st">&quot;SaludF&quot;</span>)</span></code></pre></div>
+<pre><code>## Estadístico de Levene: 3234.6233
+## p-valor: 0.0000e+00
+## Resultado: Rechaza H0 (varianzas distintas)</code></pre>
+<p><strong>Prueba de Mann-Whitney (Wilcoxon rank-sum)</strong></p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="análisis-exploratorio-bivariado.html#cb67-1" tabindex="-1"></a><span class="fu">prueba_mann_whitney</span>(df, target, <span class="st">&quot;SaludF&quot;</span>)</span></code></pre></div>
+<pre><code>## Mann-Whitney U (Wilcoxon rank-sum)
+## Estadístico W: 725339035.0000
+## p-valor: 0.000000e+00
+## Resultado: Rechaza H0 (distribuciones distintas)</code></pre>
+<p>El promedio de días con mala salud física es mayor en el grupo con diabetes; se rechaza la hipótesis nula.</p>
+</div>
+</div>
+<div id="variable-respuesta-frente-a-variables-categóricas" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Variable respuesta frente a variables categóricas<a href="análisis-exploratorio-bivariado.html#variable-respuesta-frente-a-variables-categóricas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para cada variable categórica se construirá una tabla de frecuencias y porcentajes por grupo, un gráfico de barras agrupadas y una prueba de independencia (chi-cuadrado).</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="análisis-exploratorio-bivariado.html#cb69-1" tabindex="-1"></a><span class="co"># Descripciones amigables para cada variable categórica (usadas como</span></span>
+<span id="cb69-2"><a href="análisis-exploratorio-bivariado.html#cb69-2" tabindex="-1"></a><span class="co"># encabezado de cada subsección).</span></span>
+<span id="cb69-3"><a href="análisis-exploratorio-bivariado.html#cb69-3" tabindex="-1"></a>descripciones <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb69-4"><a href="análisis-exploratorio-bivariado.html#cb69-4" tabindex="-1"></a>  <span class="at">PA_alta             =</span> <span class="st">&quot;presión arterial alta&quot;</span>,</span>
+<span id="cb69-5"><a href="análisis-exploratorio-bivariado.html#cb69-5" tabindex="-1"></a>  <span class="at">col_alto            =</span> <span class="st">&quot;colesterol alto&quot;</span>,</span>
+<span id="cb69-6"><a href="análisis-exploratorio-bivariado.html#cb69-6" tabindex="-1"></a>  <span class="at">CheckCol            =</span> <span class="st">&quot;chequeo de colesterol en los últimos 5 años&quot;</span>,</span>
+<span id="cb69-7"><a href="análisis-exploratorio-bivariado.html#cb69-7" tabindex="-1"></a>  <span class="at">Fumador             =</span> <span class="st">&quot;haber fumado al menos 100 cigarrillos en la vida&quot;</span>,</span>
+<span id="cb69-8"><a href="análisis-exploratorio-bivariado.html#cb69-8" tabindex="-1"></a>  <span class="at">derrame             =</span> <span class="st">&quot;haber tenido un derrame cerebral&quot;</span>,</span>
+<span id="cb69-9"><a href="análisis-exploratorio-bivariado.html#cb69-9" tabindex="-1"></a>  <span class="at">EnfCardi            =</span> <span class="st">&quot;enfermedad coronaria o infarto&quot;</span>,</span>
+<span id="cb69-10"><a href="análisis-exploratorio-bivariado.html#cb69-10" tabindex="-1"></a>  <span class="at">ActFisi             =</span> <span class="st">&quot;actividad física en los últimos 30 días&quot;</span>,</span>
+<span id="cb69-11"><a href="análisis-exploratorio-bivariado.html#cb69-11" tabindex="-1"></a>  <span class="at">fruta               =</span> <span class="st">&quot;consumo de fruta al menos una vez al día&quot;</span>,</span>
+<span id="cb69-12"><a href="análisis-exploratorio-bivariado.html#cb69-12" tabindex="-1"></a>  <span class="at">vegetales           =</span> <span class="st">&quot;consumo de vegetales al menos una vez al día&quot;</span>,</span>
+<span id="cb69-13"><a href="análisis-exploratorio-bivariado.html#cb69-13" tabindex="-1"></a>  <span class="at">Alcohlico           =</span> <span class="st">&quot;consumo excesivo de alcohol&quot;</span>,</span>
+<span id="cb69-14"><a href="análisis-exploratorio-bivariado.html#cb69-14" tabindex="-1"></a>  <span class="at">eps                 =</span> <span class="st">&quot;cobertura de salud (EPS o seguro médico)&quot;</span>,</span>
+<span id="cb69-15"><a href="análisis-exploratorio-bivariado.html#cb69-15" tabindex="-1"></a>  <span class="at">AfordabilidadMedica =</span> <span class="st">&quot;no poder costear una consulta médica por dinero en el último año&quot;</span>,</span>
+<span id="cb69-16"><a href="análisis-exploratorio-bivariado.html#cb69-16" tabindex="-1"></a>  <span class="at">SaludG              =</span> <span class="st">&quot;salud general percibida&quot;</span>,</span>
+<span id="cb69-17"><a href="análisis-exploratorio-bivariado.html#cb69-17" tabindex="-1"></a>  <span class="at">DificultadCaminar   =</span> <span class="st">&quot;dificultad seria para caminar o subir escaleras&quot;</span>,</span>
+<span id="cb69-18"><a href="análisis-exploratorio-bivariado.html#cb69-18" tabindex="-1"></a>  <span class="at">Genero              =</span> <span class="st">&quot;género&quot;</span>,</span>
+<span id="cb69-19"><a href="análisis-exploratorio-bivariado.html#cb69-19" tabindex="-1"></a>  <span class="at">Edad                =</span> <span class="st">&quot;categoría de edad (rangos de 5 años, de 18 a 80+)&quot;</span>,</span>
+<span id="cb69-20"><a href="análisis-exploratorio-bivariado.html#cb69-20" tabindex="-1"></a>  <span class="at">Educacion           =</span> <span class="st">&quot;nivel educativo alcanzado&quot;</span>,</span>
+<span id="cb69-21"><a href="análisis-exploratorio-bivariado.html#cb69-21" tabindex="-1"></a>  <span class="at">Ingresos            =</span> <span class="st">&quot;nivel de ingresos anual del hogar&quot;</span></span>
+<span id="cb69-22"><a href="análisis-exploratorio-bivariado.html#cb69-22" tabindex="-1"></a>)</span>
+<span id="cb69-23"><a href="análisis-exploratorio-bivariado.html#cb69-23" tabindex="-1"></a></span>
+<span id="cb69-24"><a href="análisis-exploratorio-bivariado.html#cb69-24" tabindex="-1"></a><span class="cf">for</span> (v <span class="cf">in</span> variables_categoricas) {</span>
+<span id="cb69-25"><a href="análisis-exploratorio-bivariado.html#cb69-25" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="fu">paste0</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">### Variable `&quot;</span>, v, <span class="st">&quot;` (&quot;</span>, descripciones[[v]], <span class="st">&quot;)</span><span class="sc">\n\n</span><span class="st">&quot;</span>))</span>
+<span id="cb69-26"><a href="análisis-exploratorio-bivariado.html#cb69-26" tabindex="-1"></a></span>
+<span id="cb69-27"><a href="análisis-exploratorio-bivariado.html#cb69-27" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;**Tabla de frecuencias por grupo**</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span>
+<span id="cb69-28"><a href="análisis-exploratorio-bivariado.html#cb69-28" tabindex="-1"></a>  tab <span class="ot">&lt;-</span> <span class="fu">bivar_tabla_frecuencias</span>(df, target, v)</span>
+<span id="cb69-29"><a href="análisis-exploratorio-bivariado.html#cb69-29" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">mostrar_tabla</span>(tab))</span>
+<span id="cb69-30"><a href="análisis-exploratorio-bivariado.html#cb69-30" tabindex="-1"></a></span>
+<span id="cb69-31"><a href="análisis-exploratorio-bivariado.html#cb69-31" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">**Gráfico de barras agrupadas**</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span>
+<span id="cb69-32"><a href="análisis-exploratorio-bivariado.html#cb69-32" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="fu">bivar_grafico_barras</span>(tab, target, etiquetas_diabetes,</span>
+<span id="cb69-33"><a href="análisis-exploratorio-bivariado.html#cb69-33" tabindex="-1"></a>        <span class="at">titulo =</span> <span class="fu">paste0</span>(<span class="st">&quot;Distribución de &quot;</span>, v, <span class="st">&quot; según Diabetes&quot;</span>),</span>
+<span id="cb69-34"><a href="análisis-exploratorio-bivariado.html#cb69-34" tabindex="-1"></a>        <span class="at">xlab =</span> v)</span>
+<span id="cb69-35"><a href="análisis-exploratorio-bivariado.html#cb69-35" tabindex="-1"></a>  <span class="fu">print</span>(p)</span>
+<span id="cb69-36"><a href="análisis-exploratorio-bivariado.html#cb69-36" tabindex="-1"></a></span>
+<span id="cb69-37"><a href="análisis-exploratorio-bivariado.html#cb69-37" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">**Prueba de independencia (chi-cuadrado)**</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span>
+<span id="cb69-38"><a href="análisis-exploratorio-bivariado.html#cb69-38" tabindex="-1"></a>  <span class="fu">prueba_chi2</span>(df, target, v)</span>
+<span id="cb69-39"><a href="análisis-exploratorio-bivariado.html#cb69-39" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span>
+<span id="cb69-40"><a href="análisis-exploratorio-bivariado.html#cb69-40" tabindex="-1"></a>}</span></code></pre></div>
+<div id="variable-pa_alta-presión-arterial-alta-1" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Variable <code>PA_alta</code> (presión arterial alta)<a href="análisis-exploratorio-bivariado.html#variable-pa_alta-presión-arterial-alta-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Tabla de frecuencias por grupo</strong></p>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Diabetes
+</th>
+<th style="text-align:right;">
+categoria
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+porcentaje
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+20918
+</td>
+<td style="text-align:right;">
+61.60
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+13042
+</td>
+<td style="text-align:right;">
+38.40
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+26405
+</td>
+<td style="text-align:right;">
+75.23
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+8692
+</td>
+<td style="text-align:right;">
+24.77
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gráfico de barras agrupadas</strong></p>
+<p><img src="diabetes-book-r_files/figure-html/bivar-categoricas-1.png" alt="" width="768" style="display: block; margin: auto;" /></p>
+<p><strong>Prueba de independencia (chi-cuadrado)</strong></p>
+<p>Estadístico X²: 9558.8268
+p-valor: 0.0000e+00
+Grados de libertad: 1
+Resultado: Rechaza H0 (dependientes)</p>
+</div>
+<div id="variable-col_alto-colesterol-alto-1" class="section level3 hasAnchor" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Variable <code>col_alto</code> (colesterol alto)<a href="análisis-exploratorio-bivariado.html#variable-col_alto-colesterol-alto-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Tabla de frecuencias por grupo</strong></p>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Diabetes
+</th>
+<th style="text-align:right;">
+categoria
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+porcentaje
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+20764
+</td>
+<td style="text-align:right;">
+61.14
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+13196
+</td>
+<td style="text-align:right;">
+38.86
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+23496
+</td>
+<td style="text-align:right;">
+66.95
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+11601
+</td>
+<td style="text-align:right;">
+33.05
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gráfico de barras agrupadas</strong></p>
+<p><img src="diabetes-book-r_files/figure-html/bivar-categoricas-2.png" alt="" width="768" style="display: block; margin: auto;" /></p>
+<p><strong>Prueba de independencia (chi-cuadrado)</strong></p>
+<p>Estadístico X²: 5468.3060
+p-valor: 0.0000e+00
+Grados de libertad: 1
+Resultado: Rechaza H0 (dependientes)</p>
+</div>
+<div id="variable-checkcol-chequeo-de-colesterol-en-los-últimos-5-años" class="section level3 hasAnchor" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> Variable <code>CheckCol</code> (chequeo de colesterol en los últimos 5 años)<a href="análisis-exploratorio-bivariado.html#variable-checkcol-chequeo-de-colesterol-en-los-últimos-5-años" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Tabla de frecuencias por grupo</strong></p>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Diabetes
+</th>
+<th style="text-align:right;">
+categoria
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+porcentaje
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+32461
+</td>
+<td style="text-align:right;">
+95.59
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1499
+</td>
+<td style="text-align:right;">
+4.41
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+34856
+</td>
+<td style="text-align:right;">
+99.31
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+241
+</td>
+<td style="text-align:right;">
+0.69
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gráfico de barras agrupadas</strong></p>
+<p><img src="diabetes-book-r_files/figure-html/bivar-categoricas-3.png" alt="" width="768" style="display: block; margin: auto;" /></p>
+<p><strong>Prueba de independencia (chi-cuadrado)</strong></p>
+<p>Estadístico X²: 976.2730
+p-valor: 2.5806e-214
+Grados de libertad: 1
+Resultado: Rechaza H0 (dependientes)</p>
+</div>
+<div id="variable-fumador-haber-fumado-al-menos-100-cigarrillos-en-la-vida" class="section level3 hasAnchor" number="2.2.4">
+<h3><span class="header-section-number">2.2.4</span> Variable <code>Fumador</code> (haber fumado al menos 100 cigarrillos en la vida)<a href="análisis-exploratorio-bivariado.html#variable-fumador-haber-fumado-al-menos-100-cigarrillos-en-la-vida" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Tabla de frecuencias por grupo</strong></p>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Diabetes
+</th>
+<th style="text-align:right;">
+categoria
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+porcentaje
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+18902
+</td>
+<td style="text-align:right;">
+55.66
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+15058
+</td>
+<td style="text-align:right;">
+44.34
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+18223
+</td>
+<td style="text-align:right;">
+51.92
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+16874
+</td>
+<td style="text-align:right;">
+48.08
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gráfico de barras agrupadas</strong></p>
+<p><img src="diabetes-book-r_files/figure-html/bivar-categoricas-4.png" alt="" width="768" style="display: block; margin: auto;" /></p>
+<p><strong>Prueba de independencia (chi-cuadrado)</strong></p>
+<p>Estadístico X²: 397.3360
+p-valor: 2.0934e-88
+Grados de libertad: 1
+Resultado: Rechaza H0 (dependientes)</p>
+</div>
+<div id="variable-derrame-haber-tenido-un-derrame-cerebral" class="section level3 hasAnchor" number="2.2.5">
+<h3><span class="header-section-number">2.2.5</span> Variable <code>derrame</code> (haber tenido un derrame cerebral)<a href="análisis-exploratorio-bivariado.html#variable-derrame-haber-tenido-un-derrame-cerebral" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Tabla de frecuencias por grupo</strong></p>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Diabetes
+</th>
+<th style="text-align:right;">
+categoria
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+porcentaje
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+32833
+</td>
+<td style="text-align:right;">
+96.68
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1127
+</td>
+<td style="text-align:right;">
+3.32
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+31829
+</td>
+<td style="text-align:right;">
+90.69
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3268
+</td>
+<td style="text-align:right;">
+9.31
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gráfico de barras agrupadas</strong></p>
+<p><img src="diabetes-book-r_files/figure-html/bivar-categoricas-5.png" alt="" width="768" style="display: block; margin: auto;" /></p>
+<p><strong>Prueba de independencia (chi-cuadrado)</strong></p>
+<p>Estadístico X²: 1040.1270
+p-valor: 3.4062e-228
+Grados de libertad: 1
+Resultado: Rechaza H0 (dependientes)</p>
+</div>
+<div id="variable-enfcardi-enfermedad-coronaria-o-infarto" class="section level3 hasAnchor" number="2.2.6">
+<h3><span class="header-section-number">2.2.6</span> Variable <code>EnfCardi</code> (enfermedad coronaria o infarto)<a href="análisis-exploratorio-bivariado.html#variable-enfcardi-enfermedad-coronaria-o-infarto" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Tabla de frecuencias por grupo</strong></p>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Diabetes
+</th>
+<th style="text-align:right;">
+categoria
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+porcentaje
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+31397
+</td>
+<td style="text-align:right;">
+92.45
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2563
+</td>
+<td style="text-align:right;">
+7.55
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+27241
+</td>
+<td style="text-align:right;">
+77.62
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+7856
+</td>
+<td style="text-align:right;">
+22.38
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gráfico de barras agrupadas</strong></p>
+<p><img src="diabetes-book-r_files/figure-html/bivar-categoricas-6.png" alt="" width="768" style="display: block; margin: auto;" /></p>
+<p><strong>Prueba de independencia (chi-cuadrado)</strong></p>
+<p>Estadístico X²: 2965.5615
+p-valor: 0.0000e+00
+Grados de libertad: 1
+Resultado: Rechaza H0 (dependientes)</p>
+</div>
+<div id="variable-actfisi-actividad-física-en-los-últimos-30-días-1" class="section level3 hasAnchor" number="2.2.7">
+<h3><span class="header-section-number">2.2.7</span> Variable <code>ActFisi</code> (actividad física en los últimos 30 días)<a href="análisis-exploratorio-bivariado.html#variable-actfisi-actividad-física-en-los-últimos-30-días-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Tabla de frecuencias por grupo</strong></p>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Diabetes
+</th>
+<th style="text-align:right;">
+categoria
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+porcentaje
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+26038
+</td>
+<td style="text-align:right;">
+76.67
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+7922
+</td>
+<td style="text-align:right;">
+23.33
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+22059
+</td>
+<td style="text-align:right;">
+62.85
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+13038
+</td>
+<td style="text-align:right;">
+37.15
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gráfico de barras agrupadas</strong></p>
+<p><img src="diabetes-book-r_files/figure-html/bivar-categoricas-7.png" alt="" width="768" style="display: block; margin: auto;" /></p>
+<p><strong>Prueba de independencia (chi-cuadrado)</strong></p>
+<p>Estadístico X²: 1559.6134
+p-valor: 0.0000e+00
+Grados de libertad: 1
+Resultado: Rechaza H0 (dependientes)</p>
+</div>
+<div id="variable-fruta-consumo-de-fruta-al-menos-una-vez-al-día" class="section level3 hasAnchor" number="2.2.8">
+<h3><span class="header-section-number">2.2.8</span> Variable <code>fruta</code> (consumo de fruta al menos una vez al día)<a href="análisis-exploratorio-bivariado.html#variable-fruta-consumo-de-fruta-al-menos-una-vez-al-día" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Tabla de frecuencias por grupo</strong></p>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Diabetes
+</th>
+<th style="text-align:right;">
+categoria
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+porcentaje
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+21320
+</td>
+<td style="text-align:right;">
+62.78
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+12640
+</td>
+<td style="text-align:right;">
+37.22
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+20505
+</td>
+<td style="text-align:right;">
+58.42
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+14592
+</td>
+<td style="text-align:right;">
+41.58
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gráfico de barras agrupadas</strong></p>
+<p><img src="diabetes-book-r_files/figure-html/bivar-categoricas-8.png" alt="" width="768" style="display: block; margin: auto;" /></p>
+<p><strong>Prueba de independencia (chi-cuadrado)</strong></p>
+<p>Estadístico X²: 137.1180
+p-valor: 1.1363e-31
+Grados de libertad: 1
+Resultado: Rechaza H0 (dependientes)</p>
+</div>
+<div id="variable-vegetales-consumo-de-vegetales-al-menos-una-vez-al-día" class="section level3 hasAnchor" number="2.2.9">
+<h3><span class="header-section-number">2.2.9</span> Variable <code>vegetales</code> (consumo de vegetales al menos una vez al día)<a href="análisis-exploratorio-bivariado.html#variable-vegetales-consumo-de-vegetales-al-menos-una-vez-al-día" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Tabla de frecuencias por grupo</strong></p>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Diabetes
+</th>
+<th style="text-align:right;">
+categoria
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+porcentaje
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+27654
+</td>
+<td style="text-align:right;">
+81.43
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+6306
+</td>
+<td style="text-align:right;">
+18.57
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+26495
+</td>
+<td style="text-align:right;">
+75.49
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+8602
+</td>
+<td style="text-align:right;">
+24.51
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gráfico de barras agrupadas</strong></p>
+<p><img src="diabetes-book-r_files/figure-html/bivar-categoricas-9.png" alt="" width="768" style="display: block; margin: auto;" /></p>
+<p><strong>Prueba de independencia (chi-cuadrado)</strong></p>
+<p>Estadístico X²: 359.7942
+p-valor: 3.1217e-80
+Grados de libertad: 1
+Resultado: Rechaza H0 (dependientes)</p>
+</div>
+<div id="variable-alcohlico-consumo-excesivo-de-alcohol" class="section level3 hasAnchor" number="2.2.10">
+<h3><span class="header-section-number">2.2.10</span> Variable <code>Alcohlico</code> (consumo excesivo de alcohol)<a href="análisis-exploratorio-bivariado.html#variable-alcohlico-consumo-excesivo-de-alcohol" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Tabla de frecuencias por grupo</strong></p>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Diabetes
+</th>
+<th style="text-align:right;">
+categoria
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+porcentaje
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+31787
+</td>
+<td style="text-align:right;">
+93.60
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2173
+</td>
+<td style="text-align:right;">
+6.40
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+34265
+</td>
+<td style="text-align:right;">
+97.63
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+832
+</td>
+<td style="text-align:right;">
+2.37
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gráfico de barras agrupadas</strong></p>
+<p><img src="diabetes-book-r_files/figure-html/bivar-categoricas-10.png" alt="" width="768" style="display: block; margin: auto;" /></p>
+<p><strong>Prueba de independencia (chi-cuadrado)</strong></p>
+<p>Estadístico X²: 672.8561
+p-valor: 2.3905e-148
+Grados de libertad: 1
+Resultado: Rechaza H0 (dependientes)</p>
+</div>
+<div id="variable-eps-cobertura-de-salud-eps-o-seguro-médico" class="section level3 hasAnchor" number="2.2.11">
+<h3><span class="header-section-number">2.2.11</span> Variable <code>eps</code> (cobertura de salud (EPS o seguro médico))<a href="análisis-exploratorio-bivariado.html#variable-eps-cobertura-de-salud-eps-o-seguro-médico" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Tabla de frecuencias por grupo</strong></p>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Diabetes
+</th>
+<th style="text-align:right;">
+categoria
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+porcentaje
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+32199
+</td>
+<td style="text-align:right;">
+94.81
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1761
+</td>
+<td style="text-align:right;">
+5.19
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+33675
+</td>
+<td style="text-align:right;">
+95.95
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1422
+</td>
+<td style="text-align:right;">
+4.05
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gráfico de barras agrupadas</strong></p>
+<p><img src="diabetes-book-r_files/figure-html/bivar-categoricas-11.png" alt="" width="768" style="display: block; margin: auto;" /></p>
+<p><strong>Prueba de independencia (chi-cuadrado)</strong></p>
+<p>Estadístico X²: 50.4698
+p-valor: 1.2101e-12
+Grados de libertad: 1
+Resultado: Rechaza H0 (dependientes)</p>
+</div>
+<div id="variable-afordabilidadmedica-no-poder-costear-una-consulta-médica-por-dinero-en-el-último-año" class="section level3 hasAnchor" number="2.2.12">
+<h3><span class="header-section-number">2.2.12</span> Variable <code>AfordabilidadMedica</code> (no poder costear una consulta médica por dinero en el último año)<a href="análisis-exploratorio-bivariado.html#variable-afordabilidadmedica-no-poder-costear-una-consulta-médica-por-dinero-en-el-último-año" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Tabla de frecuencias por grupo</strong></p>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Diabetes
+</th>
+<th style="text-align:right;">
+categoria
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+porcentaje
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+31063
+</td>
+<td style="text-align:right;">
+91.47
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2897
+</td>
+<td style="text-align:right;">
+8.53
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+31355
+</td>
+<td style="text-align:right;">
+89.34
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3742
+</td>
+<td style="text-align:right;">
+10.66
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gráfico de barras agrupadas</strong></p>
+<p><img src="diabetes-book-r_files/figure-html/bivar-categoricas-12.png" alt="" width="768" style="display: block; margin: auto;" /></p>
+<p><strong>Prueba de independencia (chi-cuadrado)</strong></p>
+<p>Estadístico X²: 90.2202
+p-valor: 2.1307e-21
+Grados de libertad: 1
+Resultado: Rechaza H0 (dependientes)</p>
+</div>
+<div id="variable-saludg-salud-general-percibida-1" class="section level3 hasAnchor" number="2.2.13">
+<h3><span class="header-section-number">2.2.13</span> Variable <code>SaludG</code> (salud general percibida)<a href="análisis-exploratorio-bivariado.html#variable-saludg-salud-general-percibida-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Tabla de frecuencias por grupo</strong></p>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Diabetes
+</th>
+<th style="text-align:right;">
+categoria
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+porcentaje
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+12825
+</td>
+<td style="text-align:right;">
+37.77
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+9922
+</td>
+<td style="text-align:right;">
+29.22
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+6472
+</td>
+<td style="text-align:right;">
+19.06
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+3511
+</td>
+<td style="text-align:right;">
+10.34
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+1230
+</td>
+<td style="text-align:right;">
+3.62
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+13324
+</td>
+<td style="text-align:right;">
+37.96
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+9781
+</td>
+<td style="text-align:right;">
+27.87
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+6280
+</td>
+<td style="text-align:right;">
+17.89
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+4577
+</td>
+<td style="text-align:right;">
+13.04
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1135
+</td>
+<td style="text-align:right;">
+3.23
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gráfico de barras agrupadas</strong></p>
+<p><img src="diabetes-book-r_files/figure-html/bivar-categoricas-13.png" alt="" width="768" style="display: block; margin: auto;" /></p>
+<p><strong>Prueba de independencia (chi-cuadrado)</strong></p>
+<p>Estadístico X²: 11355.5693
+p-valor: 0.0000e+00
+Grados de libertad: 4
+Resultado: Rechaza H0 (dependientes)</p>
+</div>
+<div id="variable-dificultadcaminar-dificultad-seria-para-caminar-o-subir-escaleras" class="section level3 hasAnchor" number="2.2.14">
+<h3><span class="header-section-number">2.2.14</span> Variable <code>DificultadCaminar</code> (dificultad seria para caminar o subir escaleras)<a href="análisis-exploratorio-bivariado.html#variable-dificultadcaminar-dificultad-seria-para-caminar-o-subir-escaleras" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Tabla de frecuencias por grupo</strong></p>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Diabetes
+</th>
+<th style="text-align:right;">
+categoria
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+porcentaje
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+29215
+</td>
+<td style="text-align:right;">
+86.03
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4745
+</td>
+<td style="text-align:right;">
+13.97
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+21983
+</td>
+<td style="text-align:right;">
+62.63
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+13114
+</td>
+<td style="text-align:right;">
+37.37
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gráfico de barras agrupadas</strong></p>
+<p><img src="diabetes-book-r_files/figure-html/bivar-categoricas-14.png" alt="" width="768" style="display: block; margin: auto;" /></p>
+<p><strong>Prueba de independencia (chi-cuadrado)</strong></p>
+<p>Estadístico X²: 4926.0161
+p-valor: 0.0000e+00
+Grados de libertad: 1
+Resultado: Rechaza H0 (dependientes)</p>
+</div>
+<div id="variable-genero-género" class="section level3 hasAnchor" number="2.2.15">
+<h3><span class="header-section-number">2.2.15</span> Variable <code>Genero</code> (género)<a href="análisis-exploratorio-bivariado.html#variable-genero-género" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Tabla de frecuencias por grupo</strong></p>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Diabetes
+</th>
+<th style="text-align:right;">
+categoria
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+porcentaje
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+19190
+</td>
+<td style="text-align:right;">
+56.51
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+14770
+</td>
+<td style="text-align:right;">
+43.49
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+18345
+</td>
+<td style="text-align:right;">
+52.27
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+16752
+</td>
+<td style="text-align:right;">
+47.73
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gráfico de barras agrupadas</strong></p>
+<p><img src="diabetes-book-r_files/figure-html/bivar-categoricas-15.png" alt="" width="768" style="display: block; margin: auto;" /></p>
+<p><strong>Prueba de independencia (chi-cuadrado)</strong></p>
+<p>Estadístico X²: 124.9581
+p-valor: 5.1980e-29
+Grados de libertad: 1
+Resultado: Rechaza H0 (dependientes)</p>
+</div>
+<div id="variable-edad-categoría-de-edad-rangos-de-5-años-de-18-a-80" class="section level3 hasAnchor" number="2.2.16">
+<h3><span class="header-section-number">2.2.16</span> Variable <code>Edad</code> (categoría de edad (rangos de 5 años, de 18 a 80+))<a href="análisis-exploratorio-bivariado.html#variable-edad-categoría-de-edad-rangos-de-5-años-de-18-a-80" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Tabla de frecuencias por grupo</strong></p>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Diabetes
+</th>
+<th style="text-align:right;">
+categoria
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+porcentaje
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+4192
+</td>
+<td style="text-align:right;">
+12.34
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+4151
+</td>
+<td style="text-align:right;">
+12.22
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+4102
+</td>
+<td style="text-align:right;">
+12.08
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+3555
+</td>
+<td style="text-align:right;">
+10.47
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+2842
+</td>
+<td style="text-align:right;">
+8.37
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+2731
+</td>
+<td style="text-align:right;">
+8.04
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+2338
+</td>
+<td style="text-align:right;">
+6.88
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+2196
+</td>
+<td style="text-align:right;">
+6.47
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2066
+</td>
+<td style="text-align:right;">
+6.08
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+1975
+</td>
+<td style="text-align:right;">
+5.82
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1680
+</td>
+<td style="text-align:right;">
+4.95
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1238
+</td>
+<td style="text-align:right;">
+3.65
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+894
+</td>
+<td style="text-align:right;">
+2.63
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+6483
+</td>
+<td style="text-align:right;">
+18.47
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+5681
+</td>
+<td style="text-align:right;">
+16.19
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+5090
+</td>
+<td style="text-align:right;">
+14.50
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+4241
+</td>
+<td style="text-align:right;">
+12.08
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+3383
+</td>
+<td style="text-align:right;">
+9.64
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+3200
+</td>
+<td style="text-align:right;">
+9.12
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+3072
+</td>
+<td style="text-align:right;">
+8.75
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+1741
+</td>
+<td style="text-align:right;">
+4.96
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+1049
+</td>
+<td style="text-align:right;">
+2.99
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+625
+</td>
+<td style="text-align:right;">
+1.78
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+314
+</td>
+<td style="text-align:right;">
+0.89
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+140
+</td>
+<td style="text-align:right;">
+0.40
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+78
+</td>
+<td style="text-align:right;">
+0.22
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gráfico de barras agrupadas</strong></p>
+<p><img src="diabetes-book-r_files/figure-html/bivar-categoricas-16.png" alt="" width="768" style="display: block; margin: auto;" /></p>
+<p><strong>Prueba de independencia (chi-cuadrado)</strong></p>
+<p>Estadístico X²: 5950.1989
+p-valor: 0.0000e+00
+Grados de libertad: 12
+Resultado: Rechaza H0 (dependientes)</p>
+</div>
+<div id="variable-educacion-nivel-educativo-alcanzado" class="section level3 hasAnchor" number="2.2.17">
+<h3><span class="header-section-number">2.2.17</span> Variable <code>Educacion</code> (nivel educativo alcanzado)<a href="análisis-exploratorio-bivariado.html#variable-educacion-nivel-educativo-alcanzado" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Tabla de frecuencias por grupo</strong></p>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Diabetes
+</th>
+<th style="text-align:right;">
+categoria
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+porcentaje
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+14418
+</td>
+<td style="text-align:right;">
+42.46
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+9534
+</td>
+<td style="text-align:right;">
+28.07
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+8365
+</td>
+<td style="text-align:right;">
+24.63
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1151
+</td>
+<td style="text-align:right;">
+3.39
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+464
+</td>
+<td style="text-align:right;">
+1.37
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+11032
+</td>
+<td style="text-align:right;">
+31.43
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+10311
+</td>
+<td style="text-align:right;">
+29.38
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+10228
+</td>
+<td style="text-align:right;">
+29.14
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2296
+</td>
+<td style="text-align:right;">
+6.54
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1183
+</td>
+<td style="text-align:right;">
+3.37
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+47
+</td>
+<td style="text-align:right;">
+0.13
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gráfico de barras agrupadas</strong></p>
+<p><img src="diabetes-book-r_files/figure-html/bivar-categoricas-17.png" alt="" width="768" style="display: block; margin: auto;" /></p>
+<p><strong>Prueba de independencia (chi-cuadrado)</strong></p>
+<p>Estadístico X²: 1790.2500
+p-valor: 0.0000e+00
+Grados de libertad: 5
+Resultado: Rechaza H0 (dependientes)</p>
+</div>
+<div id="variable-ingresos-nivel-de-ingresos-anual-del-hogar" class="section level3 hasAnchor" number="2.2.18">
+<h3><span class="header-section-number">2.2.18</span> Variable <code>Ingresos</code> (nivel de ingresos anual del hogar)<a href="análisis-exploratorio-bivariado.html#variable-ingresos-nivel-de-ingresos-anual-del-hogar" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Tabla de frecuencias por grupo</strong></p>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Diabetes
+</th>
+<th style="text-align:right;">
+categoria
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+porcentaje
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+12265
+</td>
+<td style="text-align:right;">
+36.12
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+6048
+</td>
+<td style="text-align:right;">
+17.81
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+4935
+</td>
+<td style="text-align:right;">
+14.53
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+3486
+</td>
+<td style="text-align:right;">
+10.27
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2599
+</td>
+<td style="text-align:right;">
+7.65
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1988
+</td>
+<td style="text-align:right;">
+5.85
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1411
+</td>
+<td style="text-align:right;">
+4.15
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1228
+</td>
+<td style="text-align:right;">
+3.62
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+7042
+</td>
+<td style="text-align:right;">
+20.06
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+5260
+</td>
+<td style="text-align:right;">
+14.99
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+5226
+</td>
+<td style="text-align:right;">
+14.89
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+4489
+</td>
+<td style="text-align:right;">
+12.79
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4047
+</td>
+<td style="text-align:right;">
+11.53
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3564
+</td>
+<td style="text-align:right;">
+10.15
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3086
+</td>
+<td style="text-align:right;">
+8.79
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2383
+</td>
+<td style="text-align:right;">
+6.79
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gráfico de barras agrupadas</strong></p>
+<p><img src="diabetes-book-r_files/figure-html/bivar-categoricas-18.png" alt="" width="768" style="display: block; margin: auto;" /></p>
+<p><strong>Prueba de independencia (chi-cuadrado)</strong></p>
+<p>Estadístico X²: 3347.7424
+p-valor: 0.0000e+00
+Grados de libertad: 7
+Resultado: Rechaza H0 (dependientes)</p>
+</div>
+</div>
+<div id="conclusión" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Conclusión<a href="análisis-exploratorio-bivariado.html#conclusión" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El análisis bivariado confirma que la condición de diabetes está asociada, de manera estadísticamente significativa, con todas las variables numéricas y categóricas evaluadas. Entre las variables numéricas, el índice de masa corporal (<code>IMC</code>) muestra la diferencia más clara entre grupos: los pacientes con diabetes o prediabetes presentan, en promedio, valores más altos que quienes no la tienen. Todas las variables categóricas evaluadas resultaron estadísticamente dependientes de <code>Diabetes</code> según la prueba de chi-cuadrado, lo que sugiere que factores como la presión arterial alta, el colesterol alto, la actividad física, la dificultad para caminar, la edad y el nivel socioeconómico están relacionados con la presencia de diabetes en esta muestra.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="análisis-univariado.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": false,
+    "twitter": false,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": null,
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>
