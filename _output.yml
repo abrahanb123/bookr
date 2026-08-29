@@ -1,0 +1,14 @@
+bookdown::gitbook:
+  css: style.css
+  config:
+    toc:
+      collapse: section
+      before: |
+        <li><strong>EDA Diabetes (R)</strong></li>
+      after: |
+        <li><a href="https://github.com/" target="_blank">Publicado con bookdown</a></li>
+    edit: null
+    download: null
+    sharing:
+      facebook: false
+      twitter: false

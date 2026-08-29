@@ -1,0 +1,173 @@
+# Análisis Exploratorio Bivariado
+
+A continuación se realiza el análisis bivariado del conjunto de datos `diabetes_binary_5050split_health_indicators_BRFSS2015`, comparando cada variable frente a la variable respuesta `Diabetes`.
+
+## Variable respuesta frente a variables numéricas
+
+Para cada variable numérica se compararán los dos grupos de la variable de respuesta (`Diabetes`) mediante un gráfico de caja y bigotes, una tabla resumen, una prueba de normalidad (Anderson-Darling), una prueba de igualdad de varianzas (Levene) y una prueba de Mann-Whitney.
+
+### Variable `IMC` (Índice de Masa Corporal)
+
+**Gráfico de caja y bigotes bivariado**
+
+```{r}
+bivar_boxplot(df, target, "IMC", etiquetas_diabetes,
+  color = "#4C72B0", titulo = "Distribución de IMC según Diabetes")
+```
+
+El gráfico muestra que los pacientes con diabetes o prediabetes presentan valores de `IMC` más altos y con mayor dispersión que los pacientes sin diabetes.
+
+**Comparación de ambas muestras**
+
+```{r}
+mostrar_tabla(bivar_resumen_numerico(df, target, "IMC"))
+```
+
+**Prueba de normalidad (Anderson-Darling)**
+
+```{r}
+prueba_anderson_darling(df, target, "IMC", etiquetas_diabetes)
+```
+
+Con un nivel de confianza del 95%, la prueba de Anderson-Darling indica que ninguno de los dos grupos sigue una distribución normal.
+
+**Prueba de igualdad de varianzas (Levene)**
+
+```{r}
+prueba_levene(df, target, "IMC")
+```
+
+La prueba de Levene indica que las varianzas de ambos grupos son estadísticamente distintas.
+
+**Prueba de Mann-Whitney (Wilcoxon rank-sum)**
+
+```{r}
+prueba_mann_whitney(df, target, "IMC")
+```
+
+Dado que ninguno de los dos grupos sigue una distribución normal, se utiliza la prueba de Mann-Whitney en lugar de una prueba t. El resultado indica que se rechaza la hipótesis nula: los grupos difieren significativamente en `IMC`.
+
+### Variable `SaludM` (días de salud mental no buena en los últimos 30 días)
+
+**Gráfico de caja y bigotes bivariado**
+
+```{r}
+bivar_boxplot(df, target, "SaludM", etiquetas_diabetes,
+  color = "#4C72B0", titulo = "Distribución de SaludM según Diabetes")
+```
+
+El gráfico muestra que los pacientes con diabetes o prediabetes presentan valores de `SaludM` más altos que los pacientes sin diabetes.
+
+**Comparación de ambas muestras**
+
+```{r}
+mostrar_tabla(bivar_resumen_numerico(df, target, "SaludM"))
+```
+
+**Prueba de normalidad (Anderson-Darling)**
+
+```{r}
+prueba_anderson_darling(df, target, "SaludM", etiquetas_diabetes)
+```
+
+**Prueba de igualdad de varianzas (Levene)**
+
+```{r}
+prueba_levene(df, target, "SaludM")
+```
+
+**Prueba de Mann-Whitney (Wilcoxon rank-sum)**
+
+```{r}
+prueba_mann_whitney(df, target, "SaludM")
+```
+
+Dado que ninguno de los dos grupos sigue una distribución normal, se utiliza la prueba de Mann-Whitney. El resultado indica que se rechaza la hipótesis nula.
+
+### Variable `SaludF` (días de salud física no buena en los últimos 30 días)
+
+**Gráfico de caja y bigotes bivariado**
+
+```{r}
+bivar_boxplot(df, target, "SaludF", etiquetas_diabetes,
+  color = "#4C72B0", titulo = "Distribución de SaludF según Diabetes")
+```
+
+El gráfico muestra que los pacientes con diabetes o prediabetes presentan valores de `SaludF` más altos que los pacientes sin diabetes.
+
+**Comparación de ambas muestras**
+
+```{r}
+mostrar_tabla(bivar_resumen_numerico(df, target, "SaludF"))
+```
+
+**Prueba de normalidad (Anderson-Darling)**
+
+```{r}
+prueba_anderson_darling(df, target, "SaludF", etiquetas_diabetes)
+```
+
+**Prueba de igualdad de varianzas (Levene)**
+
+```{r}
+prueba_levene(df, target, "SaludF")
+```
+
+**Prueba de Mann-Whitney (Wilcoxon rank-sum)**
+
+```{r}
+prueba_mann_whitney(df, target, "SaludF")
+```
+
+El promedio de días con mala salud física es mayor en el grupo con diabetes; se rechaza la hipótesis nula.
+
+## Variable respuesta frente a variables categóricas
+
+Para cada variable categórica se construirá una tabla de frecuencias y porcentajes por grupo, un gráfico de barras agrupadas y una prueba de independencia (chi-cuadrado).
+
+```{r bivar-categoricas, results='asis'}
+# Descripciones amigables para cada variable categórica (usadas como
+# encabezado de cada subsección).
+descripciones <- c(
+  PA_alta             = "presión arterial alta",
+  col_alto            = "colesterol alto",
+  CheckCol            = "chequeo de colesterol en los últimos 5 años",
+  Fumador             = "haber fumado al menos 100 cigarrillos en la vida",
+  derrame             = "haber tenido un derrame cerebral",
+  EnfCardi            = "enfermedad coronaria o infarto",
+  ActFisi             = "actividad física en los últimos 30 días",
+  fruta               = "consumo de fruta al menos una vez al día",
+  vegetales           = "consumo de vegetales al menos una vez al día",
+  Alcohlico           = "consumo excesivo de alcohol",
+  eps                 = "cobertura de salud (EPS o seguro médico)",
+  AfordabilidadMedica = "no poder costear una consulta médica por dinero en el último año",
+  SaludG              = "salud general percibida",
+  DificultadCaminar   = "dificultad seria para caminar o subir escaleras",
+  Genero              = "género",
+  Edad                = "categoría de edad (rangos de 5 años, de 18 a 80+)",
+  Educacion           = "nivel educativo alcanzado",
+  Ingresos            = "nivel de ingresos anual del hogar"
+)
+
+for (v in variables_categoricas) {
+  cat(paste0("\n### Variable `", v, "` (", descripciones[[v]], ")\n\n"))
+
+  cat("**Tabla de frecuencias por grupo**\n\n")
+  tab <- bivar_tabla_frecuencias(df, target, v)
+  print(mostrar_tabla(tab))
+
+  cat("\n\n**Gráfico de barras agrupadas**\n\n")
+  p <- bivar_grafico_barras(tab, target, etiquetas_diabetes,
+        titulo = paste0("Distribución de ", v, " según Diabetes"),
+        xlab = v)
+  print(p)
+
+  cat("\n\n**Prueba de independencia (chi-cuadrado)**\n\n")
+  prueba_chi2(df, target, v)
+  cat("\n\n")
+}
+```
+
+## Conclusión
+
+El análisis bivariado confirma que la condición de diabetes está asociada, de manera estadísticamente significativa, con todas las variables numéricas y categóricas evaluadas. Entre las variables numéricas, el índice de masa corporal (`IMC`) muestra la diferencia más clara entre grupos: los pacientes con diabetes o prediabetes presentan, en promedio, valores más altos que quienes no la tienen. Todas las variables categóricas evaluadas resultaron estadísticamente dependientes de `Diabetes` según la prueba de chi-cuadrado, lo que sugiere que factores como la presión arterial alta, el colesterol alto, la actividad física, la dificultad para caminar, la edad y el nivel socioeconómico están relacionados con la presencia de diabetes en esta muestra.

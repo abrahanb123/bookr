@@ -1,0 +1,49 @@
+--- 
+title: "Análisis Exploratorio de Datos — Diabetes"
+subtitle: "Análisis Univariado y Bivariado (versión R)"
+author: "Abrahan Basto y Angel mozo"
+date: "28-08-2026"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: []
+link-citations: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  fig.align = "center",
+  fig.width = 8,
+  fig.height = 5
+)
+
+source("R/helpers.R")
+
+# Ruta del archivo de datos. Coloca tu CSV en data/diabetes.csv
+# (o cambia esta ruta si usas otro nombre/ubicación).
+df <- cargar_datos("data/diabetes.csv")
+
+target <- "Diabetes"
+variables_numericas <- c("IMC", "SaludM", "SaludF")
+variables_categoricas <- c(
+  "PA_alta", "col_alto", "CheckCol", "Fumador", "derrame",
+  "EnfCardi", "ActFisi", "fruta", "vegetales", "Alcohlico",
+  "eps", "AfordabilidadMedica", "SaludG",
+  "DificultadCaminar", "Genero", "Edad", "Educacion", "Ingresos"
+)
+
+paleta_diabetes <- c("#4C72B0", "#DD8452")
+etiquetas_diabetes <- c("Sin diabetes", "Con diabetes / prediabetes")
+```
+
+# Presentación {-}
+
+
+El libro está organizado en dos partes:
+
+1. **Análisis Univariado**: examina cada variable de forma individual (distribución, medidas centrales y de dispersión).
+2. **Análisis Bivariado**: compara cada variable frente a la variable respuesta `Diabetes`, con pruebas estadísticas de asociación.
+
+
