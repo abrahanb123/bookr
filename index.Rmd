@@ -1,8 +1,8 @@
---- 
-title: "Análisis Exploratorio de Datos — Diabetes"
+---
+title: "Análisis Exploratorio de Datos - Diabetes"
 subtitle: "Análisis Univariado y Bivariado (versión R)"
-author: "Abrahan Basto y Angel mozo"
-date: "28-08-2026"
+author: "Abraham Basto y Angel mozo"
+date: " 28-08-2026"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: []
@@ -18,12 +18,48 @@ knitr::opts_chunk$set(
   fig.width = 8,
   fig.height = 5
 )
+library(dplyr)
 
 source("R/helpers.R")
 
-# Ruta del archivo de datos. Coloca tu CSV en data/diabetes.csv
-# (o cambia esta ruta si usas otro nombre/ubicación).
-df <- cargar_datos("data/diabetes.csv")
+# Ruta del archivo de datos: usamos una ruta RELATIVA para que el proyecto
+# sea reproducible en cualquier equipo (evitamos rutas absolutas que solo
+# funcionan en una máquina específica).
+# Ruta del archivo de datos: usamos una ruta RELATIVA para que el proyecto
+# sea reproducible en cualquier equipo (evitamos rutas absolutas que solo
+# funcionan en una máquina específica).
+df <- read.csv("~/diabetes-book-r/diabetes-book-r/data/diabetes.csv")
+
+# El archivo original (BRFSS 2015 / Kaggle) trae los nombres de columna en
+# inglés. Como todo el análisis de este libro usa nombres en español,
+# renombramos las columnas aquí, una sola vez, para que el resto del
+# libro (01-univariado.Rmd y 02-bivariado.Rmd) funcione sin cambios.
+df <- df %>%
+  rename(
+    Diabetes            = Diabetes_binary,
+    PA_alta             = HighBP,
+    col_alto            = HighChol,
+    CheckCol            = CholCheck,
+    IMC                 = BMI,
+    Fumador             = Smoker,
+    derrame             = Stroke,
+    EnfCardi            = HeartDiseaseorAttack,
+    ActFisi             = PhysActivity,
+    fruta               = Fruits,
+    vegetales           = Veggies,
+    Alcohlico           = HvyAlcoholConsump,
+    eps                 = AnyHealthcare,
+    AfordabilidadMedica = NoDocbcCost,
+    SaludG              = GenHlth,
+    SaludM              = MentHlth,
+    SaludF              = PhysHlth,
+    DificultadCaminar   = DiffWalk,
+    Genero              = Sex,
+    Edad                = Age,
+    Educacion           = Education,
+    Ingresos            = Income
+  )
+
 
 target <- "Diabetes"
 variables_numericas <- c("IMC", "SaludM", "SaludF")
@@ -40,10 +76,7 @@ etiquetas_diabetes <- c("Sin diabetes", "Con diabetes / prediabetes")
 
 # Presentación {-}
 
-
 El libro está organizado en dos partes:
 
 1. **Análisis Univariado**: examina cada variable de forma individual (distribución, medidas centrales y de dispersión).
 2. **Análisis Bivariado**: compara cada variable frente a la variable respuesta `Diabetes`, con pruebas estadísticas de asociación.
-
-

@@ -1,5 +1,32 @@
 # Análisis Exploratorio Bivariado
 
+```{r bivariado-dependencias, include=FALSE}
+# ------------------------------------------------------------------
+# Chunk defensivo: este capítulo depende de objetos creados en
+# index.Rmd (df, target, variables_categoricas, variables_numericas,
+# etiquetas_diabetes, paleta_diabetes). En el libro bookdown completo
+# ya existen en el entorno global. Este bloque solo es un respaldo
+# por si el archivo se knittea de forma aislada.
+# ------------------------------------------------------------------
+if (!exists("df")) {
+  source("R/helpers.R")
+  df <- read.csv("~/diabetes-book-r/diabetes-book-r/data/diabetes.csv")
+}
+
+if (!exists("target"))               target <- "Diabetes"
+if (!exists("variables_numericas"))  variables_numericas <- c("IMC", "SaludM", "SaludF")
+if (!exists("variables_categoricas")) {
+  variables_categoricas <- c(
+    "PA_alta", "col_alto", "CheckCol", "Fumador", "derrame",
+    "EnfCardi", "ActFisi", "fruta", "vegetales", "Alcohlico",
+    "eps", "AfordabilidadMedica", "SaludG",
+    "DificultadCaminar", "Genero", "Edad", "Educacion", "Ingresos"
+  )
+}
+if (!exists("paleta_diabetes"))    paleta_diabetes <- c("#4C72B0", "#DD8452")
+if (!exists("etiquetas_diabetes")) etiquetas_diabetes <- c("Sin diabetes", "Con diabetes / prediabetes")
+```
+
 A continuación se realiza el análisis bivariado del conjunto de datos `diabetes_binary_5050split_health_indicators_BRFSS2015`, comparando cada variable frente a la variable respuesta `Diabetes`.
 
 ## Variable respuesta frente a variables numéricas

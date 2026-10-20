@@ -248,11 +248,15 @@ bivar_resumen_numerico <- function(df, target, var) {
     group_by(.data[[target]]) %>%
     summarise(resumen_grupo(.data[[var]]), .groups = "drop") %>%
     mutate(IQR = Q3 - Q1) %>%
+    # Convertimos la columna target a texto para poder combinarla (bind_rows)
+    # con la fila "TOTAL", que también es texto. Sin esto, R no puede apilar
+    # una columna numerica (0/1) con una columna de texto ("TOTAL").
     mutate(!!target := as.character(.data[[target]]))
-
-  total <- resumen_grupo(df[[var]]) %>% mutate(IQR = Q3 - Q1, !!target := "TOTAL") %>%
+  
+  total <- resumen_grupo(df[[var]]) %>%
+    mutate(IQR = Q3 - Q1, !!target := "TOTAL") %>%
     select(all_of(target), everything())
-
+  
   bind_rows(por_grupo, total) %>%
     mutate(across(where(is.numeric), ~round(.x, 2)))
 }

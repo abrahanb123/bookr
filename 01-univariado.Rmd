@@ -1,3 +1,76 @@
+# Introducción
+
+La diabetes mellitus es una de las enfermedades crónicas no transmisibles de mayor prevalencia e impacto en los sistemas de salud a nivel mundial. Su desarrollo está estrechamente relacionado con una combinación de factores biológicos, conductuales y socioeconómicos, tales como el índice de masa corporal (IMC), la presión arterial, el colesterol, los hábitos alimenticios, la actividad física y el acceso a servicios de salud.
+
+El presente informe realiza un análisis exploratorio de datos (EDA) sobre el conjunto de datos `diabetes_binary_5050split_health_indicators_BRFSS2015`, derivado de la encuesta *Behavioral Risk Factor Surveillance System* (BRFSS) del año 2015, con una muestra balanceada 50/50 entre personas con y sin diagnóstico de diabetes o prediabetes. A través de técnicas de visualización de datos y pruebas estadísticas, se busca identificar patrones, relaciones y posibles factores asociados a la condición de diabetes, sentando así las bases para un futuro modelo predictivo.
+
+# Objetivos
+
+## Objetivo general
+
+Analizar, mediante técnicas de estadística descriptiva y visualización de datos, el comportamiento individual (univariado) y la relación con la variable respuesta (bivariado) de los indicadores de salud disponibles en el dataset BRFSS 2015, con el fin de identificar los factores más asociados a la presencia de diabetes o prediabetes.
+
+## Objetivos específicos
+
+- Describir la distribución de las variables numéricas y categóricas del conjunto de datos mediante tablas de frecuencia, medidas de tendencia central/dispersión y gráficos apropiados a cada tipo de variable.
+- Comparar el comportamiento de las variables numéricas y categóricas entre los grupos con y sin diabetes, utilizando visualizaciones bivariadas (boxplots, barras agrupadas) y pruebas estadísticas de hipótesis.
+- Comunicar los hallazgos de forma clara y efectiva mediante principios de buenas prácticas de visualización (uso de color, etiquetas, escalas y narrativa visual), que faciliten la toma de decisiones informada.
+
+# Marco Teórico
+
+**Análisis exploratorio de datos (EDA).** Es el proceso de resumir, visualizar e interpretar un conjunto de datos antes de aplicar modelos formales, con el objetivo de detectar patrones, valores atípicos, relaciones entre variables y posibles errores de calidad en los datos (Tukey, 1977).
+
+**Análisis univariado.** Examina cada variable de forma individual. Para variables categóricas se emplean tablas de frecuencia y gráficos de barras, pastel o lollipop; para variables numéricas se usan medidas de tendencia central (media, mediana), de dispersión (desviación estándar, rango intercuartílico) y gráficos como histogramas o diagramas de caja y bigotes.
+
+**Análisis bivariado.** Estudia la relación entre dos variables, en este caso cada indicador de salud frente a la variable respuesta `Diabetes`. Se combinan visualizaciones (boxplots comparativos, barras agrupadas) con pruebas de hipótesis:
+
+- **Prueba de Anderson-Darling:** evalúa si una muestra proviene de una distribución normal, siendo más sensible en las colas de la distribución que otras pruebas de normalidad.
+- **Prueba de Levene:** contrasta la igualdad de varianzas entre dos o más grupos, siendo robusta ante desviaciones de la normalidad.
+- **Prueba de Mann-Whitney (Wilcoxon rank-sum):** alternativa no paramétrica a la prueba t de Student, utilizada cuando no se cumple el supuesto de normalidad, para comparar la tendencia central de dos grupos independientes.
+- **Prueba de chi-cuadrado de independencia:** evalúa si existe una asociación estadísticamente significativa entre dos variables categóricas.
+
+**Visualización de datos como herramienta de decisión.** La elección adecuada del tipo de gráfico, la paleta de colores y las etiquetas no es solo una cuestión estética: permite comunicar hallazgos de forma rápida, reducir el sesgo de interpretación y apoyar decisiones basadas en evidencia (Few, 2012; Cairo, 2016).
+
+# Metodología
+
+El análisis se desarrolla en las siguientes etapas:
+
+1. **Carga y preparación de datos:** se importa el dataset `diabetes.csv` (ver chunk de configuración en `index.Rmd`), definiendo la variable respuesta (`Diabetes`), las variables numéricas (`IMC`, `SaludM`, `SaludF`) y las variables categóricas (18 indicadores de salud, hábitos y sociodemográficos).
+2. **Análisis univariado** (sección siguiente): construcción de tablas de frecuencia/estadísticos descriptivos y gráficos (barras, pastel, lollipop, histograma, boxplot) para cada variable.
+3. **Análisis bivariado** (capítulo `02-bivariado.Rmd`): comparación de cada variable frente a `Diabetes` mediante gráficos comparativos y pruebas estadísticas (Anderson-Darling, Levene, Mann-Whitney para variables numéricas; chi-cuadrado para variables categóricas).
+4. **Interpretación y conclusiones:** síntesis de los hallazgos más relevantes para orientar hipótesis de trabajo en un eventual modelo predictivo de diabetes.
+
+Todas las visualizaciones se generaron con `ggplot2` en R, siguiendo buenas prácticas de diseño (paletas perceptualmente uniformes como *viridis*, etiquetas descriptivas y títulos informativos, y escalas consistentes entre gráficos comparables).
+
+```{r dependencias-univariado, include=FALSE}
+# ------------------------------------------------------------------
+# Chunk defensivo: df, target, variables_numericas,
+# variables_categoricas, paleta_diabetes y etiquetas_diabetes ya se
+# definen en el chunk "setup" de index.Rmd, que se ejecuta primero
+# al renderizar el libro completo con bookdown::render_book().
+#
+# El siguiente bloque solo actúa como respaldo por si este archivo
+# se knittea de forma AISLADA (fuera del libro), evitando el error
+# "objeto no encontrado".
+# ------------------------------------------------------------------
+if (!exists("df")) {
+  source("R/helpers.R")
+  df <- read.csv("~/diabetes-book-r/diabetes-book-r/data/diabetes.csv")
+}
+if (!exists("target"))               target <- "Diabetes"
+if (!exists("variables_numericas"))  variables_numericas <- c("IMC", "SaludM", "SaludF")
+if (!exists("variables_categoricas")) {
+  variables_categoricas <- c(
+    "PA_alta", "col_alto", "CheckCol", "Fumador", "derrame",
+    "EnfCardi", "ActFisi", "fruta", "vegetales", "Alcohlico",
+    "eps", "AfordabilidadMedica", "SaludG",
+    "DificultadCaminar", "Genero", "Edad", "Educacion", "Ingresos"
+  )
+}
+if (!exists("paleta_diabetes"))    paleta_diabetes <- c("#4C72B0", "#DD8452")
+if (!exists("etiquetas_diabetes")) etiquetas_diabetes <- c("Sin diabetes", "Con diabetes / prediabetes")
+```
+
 # Análisis Univariado
 
 A continuación se procederá a examinar cada variable de forma individual con el objetivo de entender su distribución, medidas centrales y de dispersión. Para complementar el análisis utilizaremos tablas de frecuencia y gráficos apropiados para cada tipo de variable.
@@ -495,3 +568,7 @@ grafico_boxplot_simple(df, "SaludF",
 ```
 
 El promedio de días con mala salud física es ligeramente mayor que el de mala salud mental (5.81 días frente a 3.75).
+
+## Conclusión del análisis univariado
+
+El análisis univariado permitió caracterizar de forma individual cada una de las variables del conjunto de datos. Se observa que la muestra está balanceada en la variable respuesta (`Diabetes`), mientras que la mayoría de las variables categóricas relacionadas con riesgo (presión arterial alta, colesterol alto, derrame, enfermedad cardiaca) presentan baja prevalencia en términos absolutos, aunque notablemente más alta que en la población general, dado el diseño muestral balanceado. En cuanto a las variables numéricas, el IMC presenta una distribución asimétrica positiva (cola hacia la derecha), mientras que los días de mala salud física y mental muestran medianas bajas con presencia de valores atípicos elevados. Estos hallazgos motivan el análisis bivariado desarrollado en la siguiente sección, donde se contrasta cada variable frente a la condición de diabetes.
