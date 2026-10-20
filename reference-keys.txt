@@ -1,3 +1,9 @@
+introducción
+objetivos
+objetivo-general
+objetivos-específicos
+marco-teórico
+metodología
 análisis-univariado
 variables-categóricas
 variable-respuesta-diabetes
@@ -23,6 +29,7 @@ variables-numéricas
 variable-imc-índice-de-masa-corporal
 variable-saludm-días-de-mala-salud-mental-en-los-últimos-30-días
 variable-saludf-días-de-mala-salud-física-en-los-últimos-30-días
+conclusión-del-análisis-univariado
 análisis-exploratorio-bivariado
 variable-respuesta-frente-a-variables-numéricas
 variable-imc-índice-de-masa-corporal-1

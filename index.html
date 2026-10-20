@@ -4,23 +4,23 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Análisis Exploratorio de Datos — Diabetes</title>
-  <meta name="description" content="Análisis Exploratorio de Datos — Diabetes" />
+  <title>Análisis Exploratorio de Datos - Diabetes</title>
+  <meta name="description" content="Análisis Exploratorio de Datos - Diabetes" />
   <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Análisis Exploratorio de Datos — Diabetes" />
+  <meta property="og:title" content="Análisis Exploratorio de Datos - Diabetes" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Análisis Exploratorio de Datos — Diabetes" />
+  <meta name="twitter:title" content="Análisis Exploratorio de Datos - Diabetes" />
   
   
   
 
-<meta name="author" content="Abrahan Basto y Angel mozo" />
+<meta name="author" content="Abraham Basto y Angel mozo" />
 
 
 
@@ -30,7 +30,7 @@
   
   
 
-<link rel="next" href="análisis-univariado.html"/>
+<link rel="next" href="introducción.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -142,67 +142,76 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Presentación</a></li>
-<li class="chapter" data-level="1" data-path="análisis-univariado.html"><a href="análisis-univariado.html"><i class="fa fa-check"></i><b>1</b> Análisis Univariado</a>
+<li class="chapter" data-level="1" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>1</b> Introducción</a></li>
+<li class="chapter" data-level="2" data-path="objetivos.html"><a href="objetivos.html"><i class="fa fa-check"></i><b>2</b> Objetivos</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variables-categóricas"><i class="fa fa-check"></i><b>1.1</b> Variables categóricas</a>
-<ul>
-<li class="chapter" data-level="1.1.1" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-respuesta-diabetes"><i class="fa fa-check"></i><b>1.1.1</b> Variable Respuesta: (<code>Diabetes</code>)</a></li>
-<li class="chapter" data-level="1.1.2" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-pa_alta-presión-arterial-alta"><i class="fa fa-check"></i><b>1.1.2</b> Variable <code>PA_alta</code> (Presión Arterial Alta)</a></li>
-<li class="chapter" data-level="1.1.3" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-col_alto-colesterol-alto"><i class="fa fa-check"></i><b>1.1.3</b> Variable <code>col_alto</code> (Colesterol Alto)</a></li>
-<li class="chapter" data-level="1.1.4" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-checkcol-chequeo-de-colesterol-en-últimos-5-años"><i class="fa fa-check"></i><b>1.1.4</b> Variable <code>CheckCol</code> (Chequeo de Colesterol en últimos 5 años)</a></li>
-<li class="chapter" data-level="1.1.5" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-fumador"><i class="fa fa-check"></i><b>1.1.5</b> Variable <code>Fumador</code></a></li>
-<li class="chapter" data-level="1.1.6" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-derrame-derrame-cerebral"><i class="fa fa-check"></i><b>1.1.6</b> Variable <code>derrame</code> (Derrame Cerebral)</a></li>
-<li class="chapter" data-level="1.1.7" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-enfcardi-enfermedad-cardiaca"><i class="fa fa-check"></i><b>1.1.7</b> Variable <code>EnfCardi</code> (Enfermedad Cardiaca)</a></li>
-<li class="chapter" data-level="1.1.8" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-actfisi-actividad-física-en-los-últimos-30-días"><i class="fa fa-check"></i><b>1.1.8</b> Variable <code>ActFisi</code> (Actividad Física en los últimos 30 días)</a></li>
-<li class="chapter" data-level="1.1.9" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-fruta-consumo-diario-de-fruta"><i class="fa fa-check"></i><b>1.1.9</b> Variable <code>fruta</code> (Consumo diario de fruta)</a></li>
-<li class="chapter" data-level="1.1.10" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-vegetales-consumo-diario-de-vegetales"><i class="fa fa-check"></i><b>1.1.10</b> Variable <code>vegetales</code> (Consumo diario de vegetales)</a></li>
-<li class="chapter" data-level="1.1.11" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-alcohlico"><i class="fa fa-check"></i><b>1.1.11</b> Variable <code>Alcohlico</code></a></li>
-<li class="chapter" data-level="1.1.12" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-eps-cobertura-médica-eps"><i class="fa fa-check"></i><b>1.1.12</b> Variable <code>eps</code> (Cobertura médica / EPS)</a></li>
-<li class="chapter" data-level="1.1.13" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-afordabilidadmedica"><i class="fa fa-check"></i><b>1.1.13</b> Variable <code>AfordabilidadMedica</code></a></li>
-<li class="chapter" data-level="1.1.14" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-saludg-salud-general-percibida"><i class="fa fa-check"></i><b>1.1.14</b> Variable <code>SaludG</code> (Salud general percibida)</a></li>
-<li class="chapter" data-level="1.1.15" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-dificultadcaminar"><i class="fa fa-check"></i><b>1.1.15</b> Variable <code>DificultadCaminar</code></a></li>
-<li class="chapter" data-level="1.1.16" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-genero"><i class="fa fa-check"></i><b>1.1.16</b> Variable <code>Genero</code></a></li>
-<li class="chapter" data-level="1.1.17" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-edad"><i class="fa fa-check"></i><b>1.1.17</b> Variable <code>Edad</code></a></li>
-<li class="chapter" data-level="1.1.18" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-educacion"><i class="fa fa-check"></i><b>1.1.18</b> Variable <code>Educacion</code></a></li>
-<li class="chapter" data-level="1.1.19" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-ingresos"><i class="fa fa-check"></i><b>1.1.19</b> Variable <code>Ingresos</code></a></li>
+<li class="chapter" data-level="2.1" data-path="objetivos.html"><a href="objetivos.html#objetivo-general"><i class="fa fa-check"></i><b>2.1</b> Objetivo general</a></li>
+<li class="chapter" data-level="2.2" data-path="objetivos.html"><a href="objetivos.html#objetivos-específicos"><i class="fa fa-check"></i><b>2.2</b> Objetivos específicos</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variables-numéricas"><i class="fa fa-check"></i><b>1.2</b> Variables Numéricas</a>
+<li class="chapter" data-level="3" data-path="marco-teórico.html"><a href="marco-teórico.html"><i class="fa fa-check"></i><b>3</b> Marco Teórico</a></li>
+<li class="chapter" data-level="4" data-path="metodología.html"><a href="metodología.html"><i class="fa fa-check"></i><b>4</b> Metodología</a></li>
+<li class="chapter" data-level="5" data-path="análisis-univariado.html"><a href="análisis-univariado.html"><i class="fa fa-check"></i><b>5</b> Análisis Univariado</a>
 <ul>
-<li class="chapter" data-level="1.2.1" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-imc-índice-de-masa-corporal"><i class="fa fa-check"></i><b>1.2.1</b> Variable <code>IMC</code> (Índice de Masa Corporal)</a></li>
-<li class="chapter" data-level="1.2.2" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-saludm-días-de-mala-salud-mental-en-los-últimos-30-días"><i class="fa fa-check"></i><b>1.2.2</b> Variable <code>SaludM</code> (días de mala salud mental en los últimos 30 días)</a></li>
-<li class="chapter" data-level="1.2.3" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-saludf-días-de-mala-salud-física-en-los-últimos-30-días"><i class="fa fa-check"></i><b>1.2.3</b> Variable <code>SaludF</code> (días de mala salud física en los últimos 30 días)</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html"><i class="fa fa-check"></i><b>2</b> Análisis Exploratorio Bivariado</a>
+<li class="chapter" data-level="5.1" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variables-categóricas"><i class="fa fa-check"></i><b>5.1</b> Variables categóricas</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-respuesta-frente-a-variables-numéricas"><i class="fa fa-check"></i><b>2.1</b> Variable respuesta frente a variables numéricas</a>
-<ul>
-<li class="chapter" data-level="2.1.1" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-imc-índice-de-masa-corporal-1"><i class="fa fa-check"></i><b>2.1.1</b> Variable <code>IMC</code> (Índice de Masa Corporal)</a></li>
-<li class="chapter" data-level="2.1.2" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-saludm-días-de-salud-mental-no-buena-en-los-últimos-30-días"><i class="fa fa-check"></i><b>2.1.2</b> Variable <code>SaludM</code> (días de salud mental no buena en los últimos 30 días)</a></li>
-<li class="chapter" data-level="2.1.3" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-saludf-días-de-salud-física-no-buena-en-los-últimos-30-días"><i class="fa fa-check"></i><b>2.1.3</b> Variable <code>SaludF</code> (días de salud física no buena en los últimos 30 días)</a></li>
+<li class="chapter" data-level="5.1.1" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-respuesta-diabetes"><i class="fa fa-check"></i><b>5.1.1</b> Variable Respuesta: (<code>Diabetes</code>)</a></li>
+<li class="chapter" data-level="5.1.2" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-pa_alta-presión-arterial-alta"><i class="fa fa-check"></i><b>5.1.2</b> Variable <code>PA_alta</code> (Presión Arterial Alta)</a></li>
+<li class="chapter" data-level="5.1.3" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-col_alto-colesterol-alto"><i class="fa fa-check"></i><b>5.1.3</b> Variable <code>col_alto</code> (Colesterol Alto)</a></li>
+<li class="chapter" data-level="5.1.4" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-checkcol-chequeo-de-colesterol-en-últimos-5-años"><i class="fa fa-check"></i><b>5.1.4</b> Variable <code>CheckCol</code> (Chequeo de Colesterol en últimos 5 años)</a></li>
+<li class="chapter" data-level="5.1.5" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-fumador"><i class="fa fa-check"></i><b>5.1.5</b> Variable <code>Fumador</code></a></li>
+<li class="chapter" data-level="5.1.6" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-derrame-derrame-cerebral"><i class="fa fa-check"></i><b>5.1.6</b> Variable <code>derrame</code> (Derrame Cerebral)</a></li>
+<li class="chapter" data-level="5.1.7" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-enfcardi-enfermedad-cardiaca"><i class="fa fa-check"></i><b>5.1.7</b> Variable <code>EnfCardi</code> (Enfermedad Cardiaca)</a></li>
+<li class="chapter" data-level="5.1.8" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-actfisi-actividad-física-en-los-últimos-30-días"><i class="fa fa-check"></i><b>5.1.8</b> Variable <code>ActFisi</code> (Actividad Física en los últimos 30 días)</a></li>
+<li class="chapter" data-level="5.1.9" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-fruta-consumo-diario-de-fruta"><i class="fa fa-check"></i><b>5.1.9</b> Variable <code>fruta</code> (Consumo diario de fruta)</a></li>
+<li class="chapter" data-level="5.1.10" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-vegetales-consumo-diario-de-vegetales"><i class="fa fa-check"></i><b>5.1.10</b> Variable <code>vegetales</code> (Consumo diario de vegetales)</a></li>
+<li class="chapter" data-level="5.1.11" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-alcohlico"><i class="fa fa-check"></i><b>5.1.11</b> Variable <code>Alcohlico</code></a></li>
+<li class="chapter" data-level="5.1.12" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-eps-cobertura-médica-eps"><i class="fa fa-check"></i><b>5.1.12</b> Variable <code>eps</code> (Cobertura médica / EPS)</a></li>
+<li class="chapter" data-level="5.1.13" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-afordabilidadmedica"><i class="fa fa-check"></i><b>5.1.13</b> Variable <code>AfordabilidadMedica</code></a></li>
+<li class="chapter" data-level="5.1.14" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-saludg-salud-general-percibida"><i class="fa fa-check"></i><b>5.1.14</b> Variable <code>SaludG</code> (Salud general percibida)</a></li>
+<li class="chapter" data-level="5.1.15" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-dificultadcaminar"><i class="fa fa-check"></i><b>5.1.15</b> Variable <code>DificultadCaminar</code></a></li>
+<li class="chapter" data-level="5.1.16" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-genero"><i class="fa fa-check"></i><b>5.1.16</b> Variable <code>Genero</code></a></li>
+<li class="chapter" data-level="5.1.17" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-edad"><i class="fa fa-check"></i><b>5.1.17</b> Variable <code>Edad</code></a></li>
+<li class="chapter" data-level="5.1.18" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-educacion"><i class="fa fa-check"></i><b>5.1.18</b> Variable <code>Educacion</code></a></li>
+<li class="chapter" data-level="5.1.19" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-ingresos"><i class="fa fa-check"></i><b>5.1.19</b> Variable <code>Ingresos</code></a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-respuesta-frente-a-variables-categóricas"><i class="fa fa-check"></i><b>2.2</b> Variable respuesta frente a variables categóricas</a>
+<li class="chapter" data-level="5.2" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variables-numéricas"><i class="fa fa-check"></i><b>5.2</b> Variables Numéricas</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-pa_alta-presión-arterial-alta-1"><i class="fa fa-check"></i><b>2.2.1</b> Variable <code>PA_alta</code> (presión arterial alta)</a></li>
-<li class="chapter" data-level="2.2.2" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-col_alto-colesterol-alto-1"><i class="fa fa-check"></i><b>2.2.2</b> Variable <code>col_alto</code> (colesterol alto)</a></li>
-<li class="chapter" data-level="2.2.3" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-checkcol-chequeo-de-colesterol-en-los-últimos-5-años"><i class="fa fa-check"></i><b>2.2.3</b> Variable <code>CheckCol</code> (chequeo de colesterol en los últimos 5 años)</a></li>
-<li class="chapter" data-level="2.2.4" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-fumador-haber-fumado-al-menos-100-cigarrillos-en-la-vida"><i class="fa fa-check"></i><b>2.2.4</b> Variable <code>Fumador</code> (haber fumado al menos 100 cigarrillos en la vida)</a></li>
-<li class="chapter" data-level="2.2.5" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-derrame-haber-tenido-un-derrame-cerebral"><i class="fa fa-check"></i><b>2.2.5</b> Variable <code>derrame</code> (haber tenido un derrame cerebral)</a></li>
-<li class="chapter" data-level="2.2.6" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-enfcardi-enfermedad-coronaria-o-infarto"><i class="fa fa-check"></i><b>2.2.6</b> Variable <code>EnfCardi</code> (enfermedad coronaria o infarto)</a></li>
-<li class="chapter" data-level="2.2.7" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-actfisi-actividad-física-en-los-últimos-30-días-1"><i class="fa fa-check"></i><b>2.2.7</b> Variable <code>ActFisi</code> (actividad física en los últimos 30 días)</a></li>
-<li class="chapter" data-level="2.2.8" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-fruta-consumo-de-fruta-al-menos-una-vez-al-día"><i class="fa fa-check"></i><b>2.2.8</b> Variable <code>fruta</code> (consumo de fruta al menos una vez al día)</a></li>
-<li class="chapter" data-level="2.2.9" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-vegetales-consumo-de-vegetales-al-menos-una-vez-al-día"><i class="fa fa-check"></i><b>2.2.9</b> Variable <code>vegetales</code> (consumo de vegetales al menos una vez al día)</a></li>
-<li class="chapter" data-level="2.2.10" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-alcohlico-consumo-excesivo-de-alcohol"><i class="fa fa-check"></i><b>2.2.10</b> Variable <code>Alcohlico</code> (consumo excesivo de alcohol)</a></li>
-<li class="chapter" data-level="2.2.11" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-eps-cobertura-de-salud-eps-o-seguro-médico"><i class="fa fa-check"></i><b>2.2.11</b> Variable <code>eps</code> (cobertura de salud (EPS o seguro médico))</a></li>
-<li class="chapter" data-level="2.2.12" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-afordabilidadmedica-no-poder-costear-una-consulta-médica-por-dinero-en-el-último-año"><i class="fa fa-check"></i><b>2.2.12</b> Variable <code>AfordabilidadMedica</code> (no poder costear una consulta médica por dinero en el último año)</a></li>
-<li class="chapter" data-level="2.2.13" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-saludg-salud-general-percibida-1"><i class="fa fa-check"></i><b>2.2.13</b> Variable <code>SaludG</code> (salud general percibida)</a></li>
-<li class="chapter" data-level="2.2.14" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-dificultadcaminar-dificultad-seria-para-caminar-o-subir-escaleras"><i class="fa fa-check"></i><b>2.2.14</b> Variable <code>DificultadCaminar</code> (dificultad seria para caminar o subir escaleras)</a></li>
-<li class="chapter" data-level="2.2.15" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-genero-género"><i class="fa fa-check"></i><b>2.2.15</b> Variable <code>Genero</code> (género)</a></li>
-<li class="chapter" data-level="2.2.16" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-edad-categoría-de-edad-rangos-de-5-años-de-18-a-80"><i class="fa fa-check"></i><b>2.2.16</b> Variable <code>Edad</code> (categoría de edad (rangos de 5 años, de 18 a 80+))</a></li>
-<li class="chapter" data-level="2.2.17" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-educacion-nivel-educativo-alcanzado"><i class="fa fa-check"></i><b>2.2.17</b> Variable <code>Educacion</code> (nivel educativo alcanzado)</a></li>
-<li class="chapter" data-level="2.2.18" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-ingresos-nivel-de-ingresos-anual-del-hogar"><i class="fa fa-check"></i><b>2.2.18</b> Variable <code>Ingresos</code> (nivel de ingresos anual del hogar)</a></li>
+<li class="chapter" data-level="5.2.1" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-imc-índice-de-masa-corporal"><i class="fa fa-check"></i><b>5.2.1</b> Variable <code>IMC</code> (Índice de Masa Corporal)</a></li>
+<li class="chapter" data-level="5.2.2" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-saludm-días-de-mala-salud-mental-en-los-últimos-30-días"><i class="fa fa-check"></i><b>5.2.2</b> Variable <code>SaludM</code> (días de mala salud mental en los últimos 30 días)</a></li>
+<li class="chapter" data-level="5.2.3" data-path="análisis-univariado.html"><a href="análisis-univariado.html#variable-saludf-días-de-mala-salud-física-en-los-últimos-30-días"><i class="fa fa-check"></i><b>5.2.3</b> Variable <code>SaludF</code> (días de mala salud física en los últimos 30 días)</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#conclusión"><i class="fa fa-check"></i><b>2.3</b> Conclusión</a></li>
+<li class="chapter" data-level="5.3" data-path="análisis-univariado.html"><a href="análisis-univariado.html#conclusión-del-análisis-univariado"><i class="fa fa-check"></i><b>5.3</b> Conclusión del análisis univariado</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html"><i class="fa fa-check"></i><b>6</b> Análisis Exploratorio Bivariado</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-respuesta-frente-a-variables-numéricas"><i class="fa fa-check"></i><b>6.1</b> Variable respuesta frente a variables numéricas</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-imc-índice-de-masa-corporal-1"><i class="fa fa-check"></i><b>6.1.1</b> Variable <code>IMC</code> (Índice de Masa Corporal)</a></li>
+<li class="chapter" data-level="6.1.2" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-saludm-días-de-salud-mental-no-buena-en-los-últimos-30-días"><i class="fa fa-check"></i><b>6.1.2</b> Variable <code>SaludM</code> (días de salud mental no buena en los últimos 30 días)</a></li>
+<li class="chapter" data-level="6.1.3" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-saludf-días-de-salud-física-no-buena-en-los-últimos-30-días"><i class="fa fa-check"></i><b>6.1.3</b> Variable <code>SaludF</code> (días de salud física no buena en los últimos 30 días)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-respuesta-frente-a-variables-categóricas"><i class="fa fa-check"></i><b>6.2</b> Variable respuesta frente a variables categóricas</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-pa_alta-presión-arterial-alta-1"><i class="fa fa-check"></i><b>6.2.1</b> Variable <code>PA_alta</code> (presión arterial alta)</a></li>
+<li class="chapter" data-level="6.2.2" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-col_alto-colesterol-alto-1"><i class="fa fa-check"></i><b>6.2.2</b> Variable <code>col_alto</code> (colesterol alto)</a></li>
+<li class="chapter" data-level="6.2.3" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-checkcol-chequeo-de-colesterol-en-los-últimos-5-años"><i class="fa fa-check"></i><b>6.2.3</b> Variable <code>CheckCol</code> (chequeo de colesterol en los últimos 5 años)</a></li>
+<li class="chapter" data-level="6.2.4" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-fumador-haber-fumado-al-menos-100-cigarrillos-en-la-vida"><i class="fa fa-check"></i><b>6.2.4</b> Variable <code>Fumador</code> (haber fumado al menos 100 cigarrillos en la vida)</a></li>
+<li class="chapter" data-level="6.2.5" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-derrame-haber-tenido-un-derrame-cerebral"><i class="fa fa-check"></i><b>6.2.5</b> Variable <code>derrame</code> (haber tenido un derrame cerebral)</a></li>
+<li class="chapter" data-level="6.2.6" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-enfcardi-enfermedad-coronaria-o-infarto"><i class="fa fa-check"></i><b>6.2.6</b> Variable <code>EnfCardi</code> (enfermedad coronaria o infarto)</a></li>
+<li class="chapter" data-level="6.2.7" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-actfisi-actividad-física-en-los-últimos-30-días-1"><i class="fa fa-check"></i><b>6.2.7</b> Variable <code>ActFisi</code> (actividad física en los últimos 30 días)</a></li>
+<li class="chapter" data-level="6.2.8" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-fruta-consumo-de-fruta-al-menos-una-vez-al-día"><i class="fa fa-check"></i><b>6.2.8</b> Variable <code>fruta</code> (consumo de fruta al menos una vez al día)</a></li>
+<li class="chapter" data-level="6.2.9" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-vegetales-consumo-de-vegetales-al-menos-una-vez-al-día"><i class="fa fa-check"></i><b>6.2.9</b> Variable <code>vegetales</code> (consumo de vegetales al menos una vez al día)</a></li>
+<li class="chapter" data-level="6.2.10" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-alcohlico-consumo-excesivo-de-alcohol"><i class="fa fa-check"></i><b>6.2.10</b> Variable <code>Alcohlico</code> (consumo excesivo de alcohol)</a></li>
+<li class="chapter" data-level="6.2.11" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-eps-cobertura-de-salud-eps-o-seguro-médico"><i class="fa fa-check"></i><b>6.2.11</b> Variable <code>eps</code> (cobertura de salud (EPS o seguro médico))</a></li>
+<li class="chapter" data-level="6.2.12" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-afordabilidadmedica-no-poder-costear-una-consulta-médica-por-dinero-en-el-último-año"><i class="fa fa-check"></i><b>6.2.12</b> Variable <code>AfordabilidadMedica</code> (no poder costear una consulta médica por dinero en el último año)</a></li>
+<li class="chapter" data-level="6.2.13" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-saludg-salud-general-percibida-1"><i class="fa fa-check"></i><b>6.2.13</b> Variable <code>SaludG</code> (salud general percibida)</a></li>
+<li class="chapter" data-level="6.2.14" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-dificultadcaminar-dificultad-seria-para-caminar-o-subir-escaleras"><i class="fa fa-check"></i><b>6.2.14</b> Variable <code>DificultadCaminar</code> (dificultad seria para caminar o subir escaleras)</a></li>
+<li class="chapter" data-level="6.2.15" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-genero-género"><i class="fa fa-check"></i><b>6.2.15</b> Variable <code>Genero</code> (género)</a></li>
+<li class="chapter" data-level="6.2.16" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-edad-categoría-de-edad-rangos-de-5-años-de-18-a-80"><i class="fa fa-check"></i><b>6.2.16</b> Variable <code>Edad</code> (categoría de edad (rangos de 5 años, de 18 a 80+))</a></li>
+<li class="chapter" data-level="6.2.17" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-educacion-nivel-educativo-alcanzado"><i class="fa fa-check"></i><b>6.2.17</b> Variable <code>Educacion</code> (nivel educativo alcanzado)</a></li>
+<li class="chapter" data-level="6.2.18" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#variable-ingresos-nivel-de-ingresos-anual-del-hogar"><i class="fa fa-check"></i><b>6.2.18</b> Variable <code>Ingresos</code> (nivel de ingresos anual del hogar)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html#conclusión"><i class="fa fa-check"></i><b>6.3</b> Conclusión</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/" target="_blank">Publicado con bookdown</a></li>
@@ -216,7 +225,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análisis Exploratorio de Datos — Diabetes</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análisis Exploratorio de Datos - Diabetes</a>
           </h1>
         </div>
 
@@ -225,9 +234,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="header">
-<h1 class="title">Análisis Exploratorio de Datos — Diabetes</h1>
+<h1 class="title">Análisis Exploratorio de Datos - Diabetes</h1>
 <h2 class="subtitle"><em>Análisis Univariado y Bivariado (versión R)</em></h2>
-<p class="author"><em>Abrahan Basto y Angel mozo</em></p>
+<p class="author"><em>Abraham Basto y Angel mozo</em></p>
 <p class="date"><em>28-08-2026</em></p>
 </div>
 <div id="presentación" class="section level1 unnumbered hasAnchor">
@@ -245,7 +254,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 
-<a href="análisis-univariado.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="introducción.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
