@@ -28,7 +28,8 @@ source("R/helpers.R")
 # Ruta del archivo de datos: usamos una ruta RELATIVA para que el proyecto
 # sea reproducible en cualquier equipo (evitamos rutas absolutas que solo
 # funcionan en una máquina específica).
-df <- read.csv("~/diabetes-book-r/diabetes-book-r/data/diabetes.csv")
+df <- read.csv("data/diabetes.csv")
+
 
 # El archivo original (BRFSS 2015 / Kaggle) trae los nombres de columna en
 # inglés. Como todo el análisis de este libro usa nombres en español,

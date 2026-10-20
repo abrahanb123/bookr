@@ -10,7 +10,8 @@
 # ------------------------------------------------------------------
 if (!exists("df")) {
   source("R/helpers.R")
-  df <- read.csv("~/diabetes-book-r/diabetes-book-r/data/diabetes.csv")
+  df <- read.csv("data/diabetes.csv")
+
 }
 
 if (!exists("target"))               target <- "Diabetes"
